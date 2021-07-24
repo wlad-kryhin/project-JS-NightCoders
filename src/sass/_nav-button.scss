@@ -7,7 +7,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.17;
-  color: #ffffff;
+  color: $main-color-txt;
   cursor: pointer;
   &:not(:last-child) {
     margin-right: 39px;
@@ -20,6 +20,6 @@
     display: block;
     width: 100%;
     height: 3px;
-    background-color: #ff6b01;
+    background-color: $color-btn-bg;
   }
 }
