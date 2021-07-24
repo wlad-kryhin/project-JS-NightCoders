@@ -1,63 +1,72 @@
-.film-list{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @media screen and (min-width: 768px) {
-   margin: -15px;
-   flex-direction: row;
-   flex-wrap: wrap;
-   align-items: flex-start;
-   justify-content: flex-start;
-    }
-
+.film-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    margin: -15px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 }
-.film-item{
-width: 100%;
-&:not(last-child){
+.film-item {
+  display: block;
+  max-width: 280px;
+  &:not(last-child) {
     margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    margin: 15px;
+    width: calc((100% - 2 * 30px) / 2);
+    max-width: 294px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: calc((100% - 3 * 30px) / 3);
+    max-width: 274px;
+  }
 }
-@media screen and (min-width: 768px) {
-   margin: 15px;
-   width: calc((100% - 2 * 30px) / 2);
+.film-link {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-@media screen and (min-width: 1024px) {
-    width: calc((100% - 3 * 30px) / 3)
+.film-description {
+  font-family: $font-family;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $txt-modal-color;
 }
+.film-gengers {
+  color: $active-color-txt;
+  text-transform: none;
 }
-.film-link{
-    display: block;
-    width: 100%;
-    height: 100%;
+.film-img {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 5px;
+}
+.film-raiting {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 1px 10px;
+  color: $main-color-txt;
+  background: $color-btn-bg;
+  border-radius: 5px;
+  margin-left: 10px;
+}
 
-}
-.film-description{
-font-family: $font-family;
-font-weight: 500;
-font-size: 12px;
-line-height: 16px;
-text-transform: uppercase;
-color: $txt-modal-color;
-}
-.film-gengers{
-color:$active-color-txt;
-text-transform: none;
-}
-.film-img{
-    width: 100%;
-    height: 400px;
-    margin-bottom: 5px;
-}
-.film-raiting{
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 14px;
-    padding:1px 10px;
-    color:$main-color-txt ;
-    background: $color-btn-bg;
-border-radius: 5px;
-margin-left: 10px;
-
+.section-hero {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    padding-bottom: 60px;
+    padding-top: 60px;
+  }
 }
 
 .section-hero{
@@ -69,3 +78,4 @@ margin-left: 10px;
         padding-top: 60px;
     }
 }
+
