@@ -14,10 +14,10 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 37px;
 }
 .nav-logo {
   display: block;
-  //margin-right: 112px;
 }
 .logo-style {
   display: flex;
@@ -31,6 +31,30 @@
 .logo-text {
   display: none;
 }
+.search-film {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-film-input {
+  width: 280px;
+  background: transparent;
+  border: transparent;
+  border-bottom: 1px solid $main-color-txt;
+  font-size: 14px;
+  line-height: 1.17;
+  color: $main-color-txt;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $main-color-txt;
+  }
+
+  &::placeholder {
+    color: $main-color-txt;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .logo-text {
     display: block;
@@ -45,6 +69,9 @@
   .nav-logo-icon {
     margin-right: 10px;
   }
+}
+.search-film-input {
+  width: 336px;
 }
 @media screen and (min-width: 1024px) {
   .logo-text {
