@@ -68,3 +68,14 @@
     padding-top: 60px;
   }
 }
+
+.section-hero{
+    min-height: 500px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    @media screen and (min-width: 768px) {
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+}
+
