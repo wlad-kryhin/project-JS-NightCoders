@@ -10,12 +10,15 @@
       integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
     <include src="./partials/header.html"></include>
-    <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
-
-    <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
+    <main>
+      <section class="section-hero">
+    <include src="./partial/list-cards.html" ></include>
+  </section>
+  </main>
     <script src="./index.js"></script>
   </body>
 </html>
