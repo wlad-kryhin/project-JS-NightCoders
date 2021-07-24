@@ -1,14 +1,12 @@
 .header {
-  position: relative;
   display: block;
   background-position: center;
   background-repeat: no-repeat;
   padding-top: 58px;
   padding-bottom: 158px;
-  margin-left: auto;
-  margin-right: auto;
   @media screen and (min-width: 320px) and (max-width: 1023px) {
-    width: auto;
+    width: 100%;
+    background-size: cover;
   }
 }
 .nav {
@@ -38,7 +36,7 @@
     display: block;
     font-weight: 500;
     font-size: 30px;
-    color: white;
+    color: $main-color-txt;
     margin-right: 303px;
   }
   .nav-logo {
