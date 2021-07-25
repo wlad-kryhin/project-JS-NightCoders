@@ -1,4 +1,4 @@
-.header-background {
+.header-background-home {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
     url(../images/header@320x1-min.jpg);
   background-color: $txt-modal-color;
@@ -32,6 +32,43 @@
     screen and (min-resolution: 2dppx) and (min-width: 1024px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/header@1024x2-min.jpg);
+    background-color: $txt-modal-color;
+  }
+}
+.header-background-myLibrary {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(../images/headerMyLibruary@320x1-min.jpg);
+  background-color: $txt-modal-color;
+  @media screen and (min-device-pixel-ratio: 2) and (min-width: 320px),
+    screen and (min-resolution: 192dpi) and (min-width: 320px),
+    screen and (min-resolution: 2dppx) and (min-width: 320px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/headerMyLibruary@320x2-min.jpg);
+    background-color: $txt-modal-color;
+  }
+  @media screen and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/headerMyLibruary@768x1-min.jpg);
+    background-color: $txt-modal-color;
+  }
+  @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
+    screen and (min-resolution: 192dpi) and (min-width: 768px),
+    screen and (min-resolution: 2dppx) and (min-width: 768px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/headerMyLibruary@768x2-min.jpg);
+    background-color: $txt-modal-color;
+  }
+
+  @media screen and (min-width: 1024px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/headerMyLibruary@1024x1-min.jpg);
+    background-color: $txt-modal-color;
+  }
+  @media screen and (min-device-pixel-ratio: 2) and (min-width: 1024px),
+    screen and (min-resolution: 192dpi) and (min-width: 1024px),
+    screen and (min-resolution: 2dppx) and (min-width: 1024px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(../images/headerMyLibruary@1024x2-min.jpg);
     background-color: $txt-modal-color;
   }
 }
