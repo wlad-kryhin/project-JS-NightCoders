@@ -1,17 +1,21 @@
 import './sass/main.scss';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
+import LoadMoreBtn from './js/components/load-more-btn';
 
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
-  loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+  //   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
-
+const loadMoreBtn = new LoadMoreBtn({
+  selector: '[data-action="load-more"]',
+  hidden: true,
+});
 const filmsApiService = new FilmsApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 function renderTrending() {
   filmsApiService.fetchTrendingFilms().then(appendFilmsMarkup);
@@ -21,30 +25,31 @@ renderTrending();
 function onSearch(e) {
   e.preventDefault();
   filmsApiService.query = e.currentTarget.query.value;
-  filmsApiService.resetPage();
-  filmsApiService.fetchFilms().then(appendFilmsMarkup);
+  if (filmsApiService.query === '') {
+    return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
+  }
+
+  loadMoreBtn.show();
+  loadMoreBtn.disable();
+  clearFilmsContainer();
+  onLoadMore();
 }
 
 function onLoadMore() {
-  filmsApiService.fetchFilms().then(appendFilmsMarkup);
+  loadMoreBtn.disable();
+  filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
 }
 
 function appendFilmsMarkup(films) {
   refs.filmsContainer.insertAdjacentHTML('beforeend', filmsTemp(films));
 }
 
-// const BASE_URL = 'https://api.themoviedb.org/3';
-// const API_KEY = '84867915c8b3aadc91d5efa8c22e1ab6';
+function clearFilmsContainer() {
+  refs.filmsContainer.innerHTML = '';
+}
 
-// const RANDOM_MOVIE_URL = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`;
-// const listMovie = document.querySelector('.film-list')
-
-// function getBestMovie(url) {
-//     fetch(url).then(parse => parse.json()).then(data => {
-//         console.log(data.results);
-//         showCards(data.results)
-//     })
-// }
+// Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
+// id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
 
 // function showCards(data) {
 //     listMovie.innerHTML =''
