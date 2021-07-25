@@ -1,20 +1,36 @@
 import './sass/main.scss';
+import FilmsApiService from './js//films-api.js';
+import filmsTemp from './templates/cardsTemplate.hbs';
 
 const refs = {
-    searchForm: document.querySelector('[data-index="search-form"]'),
-    filmsContainer: document.querySelector('.film-list'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]')
+  searchForm: document.querySelector('[data-index="search-form"]'),
+  filmsContainer: document.querySelector('.film-list'),
+  loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+};
+
+const filmsApiService = new FilmsApiService();
+
+refs.searchForm.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
+
+function renderTrending() {
+  filmsApiService.fetchTrendingFilms().then(appendFilmsMarkup);
+}
+renderTrending();
+
+function onSearch(e) {
+  e.preventDefault();
+  filmsApiService.query = e.currentTarget.query.value;
+  filmsApiService.resetPage();
+  filmsApiService.fetchFilms().then(appendFilmsMarkup);
 }
 
-refs.searchForm.addEventListener('submit', onSearch)
+function onLoadMore() {
+  filmsApiService.fetchFilms().then(appendFilmsMarkup);
+}
 
-async function onSearch(e) {
-    e.preventDefault();
-    const searchQuery = e.currentTarget.query.value;
-    // e.currentTarget.query.value;
-    const response= await fetch(`https://api.themoviedb.org/3/search/movie?api_key=6acc6746be8af475302214b8237b9c48&language=en-US&query=${searchQuery}&page=1&include_adult=false`)
-    
-   
+function appendFilmsMarkup(films) {
+  refs.filmsContainer.insertAdjacentHTML('beforeend', filmsTemp(films));
 }
 
 // const BASE_URL = 'https://api.themoviedb.org/3';
