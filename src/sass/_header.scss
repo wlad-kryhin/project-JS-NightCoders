@@ -61,6 +61,14 @@
   display: block;
   position: relative;
 }
+
+.submit-button {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 1px;
+  top: 5px;
+}
 .search-icon {
   position: absolute;
   display: block;
