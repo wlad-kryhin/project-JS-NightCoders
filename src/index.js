@@ -15,6 +15,8 @@ const loadMoreBtn = new LoadMoreBtn({
 const filmsApiService = new FilmsApiService();
 
 
+// import './js/modal.js';
+
 // const BASE_URL = 'https://api.themoviedb.org/3';
 // const API_KEY = '84867915c8b3aadc91d5efa8c22e1ab6';
 
