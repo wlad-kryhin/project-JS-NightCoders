@@ -56,6 +56,7 @@ function clearFilmsContainer() {
 
 // Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
 // id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
+//Hello
 
 // function showCards(data) {
 //     listMovie.innerHTML =''
