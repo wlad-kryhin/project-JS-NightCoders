@@ -2,7 +2,7 @@ import './sass/main.scss';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
 import LoadMoreBtn from './js/components/load-more-btn';
-
+ъ
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
@@ -13,6 +13,10 @@ const loadMoreBtn = new LoadMoreBtn({
   hidden: true,
 });
 const filmsApiService = new FilmsApiService();
+
+
+// const BASE_URL = 'https://api.themoviedb.org/3';
+// const API_KEY = '84867915c8b3aadc91d5efa8c22e1ab6';
 
 refs.searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
