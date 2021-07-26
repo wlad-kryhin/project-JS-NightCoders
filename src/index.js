@@ -2,7 +2,6 @@ import './sass/main.scss';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
 import LoadMoreBtn from './js/components/load-more-btn';
-ъ
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
