@@ -1,45 +1,44 @@
-/* haEl - это button с class="ha" в файле header.html(кнопка HOME в шапке проекта),
-создан для проверки модалки, после переподключить на film-item   */
-
 const refs = {
-  haEl: document.querySelector('.ha'),
   modalEl: document.querySelector('#modal__win'),
   closeBtnEl: document.querySelector('button[data-action="close-modal"]'),
+  bodyEl: document.querySelector('body'),
+
   modalContentEl: document.querySelector('.js-modal__content'),
   movieCardEl: document.querySelector('.js-movie-card'),
 };
 
-/* event */
+refs.closeBtnEl.addEventListener('click', onCloseModal);
+document.addEventListener('click', onClickInNotModal);
 
-refs.haEl.addEventListener('click', onMovieListClick);
+function showModal(event) {
+  event.preventDefault();
 
-function onMovieListClick(e) {
-  e.preventDefault();
-
-  onOpenBtnClick();
-}
-
-/* open */
-refs.haEl.addEventListener('click', onOpenBtnClick);
-
-function onOpenBtnClick() {
   onOpenModal();
 }
 
-const onOpenModal = () => {
+function onOpenModal() {
   refs.modalEl.classList.add('is-open');
-};
-
-/* close */
-
-refs.closeBtnEl.addEventListener('click', onCloseBtnClick);
-
-function onCloseBtnClick() {
-  onCloseModal();
+  refs.bodyEl.classList.add('hidden');
+  window.addEventListener('keydown', onClickEscape);
 }
 
-const onCloseModal = () => {
-  refs.modalEl.classList.remove('is-open');
-};
+function onClickEscape(event) {
+  if (event.code === 'Escape') {
+    refs.modalEl.classList.remove('is-open');
+    window.removeEventListener('keydown', onClickEscape);
+    onCloseModal();
+  }
+}
 
-export default onMovieListClick;
+function onCloseModal() {
+  refs.modalEl.classList.remove('is-open');
+  refs.bodyEl.classList.remove('hidden');
+}
+
+function onClickInNotModal(event) {
+  if (event.target.nodeName !== 'IMG') {
+    onCloseModal();
+  }
+}
+
+export default showModal;

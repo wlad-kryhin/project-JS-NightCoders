@@ -1,4 +1,7 @@
 import './sass/main.scss';
+// import './js/modal.js';
+
+import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
@@ -14,12 +17,10 @@ const loadMoreBtn = new LoadMoreBtn({
 });
 const filmsApiService = new FilmsApiService();
 
-
-// import './js/modal.js';
-
 // const BASE_URL = 'https://api.themoviedb.org/3';
 // const API_KEY = '84867915c8b3aadc91d5efa8c22e1ab6';
 
+refs.filmsContainer.addEventListener('click', showModal); // повесил с/с на ('.film-list') для проверки модалки
 refs.searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
@@ -39,6 +40,7 @@ function onSearch(e) {
   loadMoreBtn.disable();
   clearFilmsContainer();
   onLoadMore();
+  showModal(); // fn для модалки
 }
 
 function onLoadMore() {
