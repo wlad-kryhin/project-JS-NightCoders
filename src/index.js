@@ -2,7 +2,7 @@ import './sass/main.scss';
 // import './js/modal.js';
 
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
-
+import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
 import LoadMoreBtn from './js/components/load-more-btn';
