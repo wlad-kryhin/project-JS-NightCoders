@@ -1,5 +1,7 @@
 import './sass/main.scss';
 // import './js/modal.js';
+import Spinner from './js/spinner'
+import './js/btn-scroll';
 import './js/toggle'
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
@@ -97,3 +99,6 @@ refsHeader.myLibraryBtn.addEventListener('click', (e) => {
                 </button>`
   refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
 })
+
+const spinnerP = new Spinner()
+spinnerP.render()
