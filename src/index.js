@@ -3,7 +3,7 @@ import './sass/main.scss';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
-import filmsTemp from './templates/cardsTemplate.hbs';
+import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
@@ -34,7 +34,7 @@ function onSearch(e) {
   if (filmsApiService.query === '') {
     return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
   }
-
+  filmsApiService.resetPage();
   loadMoreBtn.show();
   loadMoreBtn.disable();
   clearFilmsContainer();
@@ -79,10 +79,10 @@ const refss = {
     myLibraryBtn: document.querySelector('[data-index="mylibrary"]')
 };
 //Function for change background image: Home
-function homePageChange() {
-    refss.header.classList.remove('header-background-myLibrary');
-    refss.header.classList.add('header-background-home');
-}
+// function homePageChange() {
+//     refss.header.classList.remove('header-background-myLibrary');
+//     refss.header.classList.add('header-background-home');
+// }
 //Function for change background image: myLibrary
 function myLibraryPageChange() {
     refss.header.classList.remove('header-background-home');
@@ -102,4 +102,3 @@ refss.myLibraryBtn.addEventListener('click', (e) => {
                 </button>`
   refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
 })
-
