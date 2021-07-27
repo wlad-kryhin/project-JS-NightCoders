@@ -1,6 +1,5 @@
 import './sass/main.scss';
 // import './js/modal.js';
-
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -55,3 +54,51 @@ function appendFilmsMarkup(films) {
 function clearFilmsContainer() {
   refs.filmsContainer.innerHTML = '';
 }
+
+// Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
+// id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
+//Hello
+
+// function showCards(data) {
+//     listMovie.innerHTML =''
+//     data.forEach(movie => {
+//         const { title, poster_path} = movie
+//         const movieItem = document.createElement('li')
+//         movieItem.className = 'film-item'
+//         movieItem.innerHTML = `<a href="" class="film-link">
+//          <img src="${poster_path}" alt="" class="film-img">
+//          <p class="film-description"> ${title}
+//          </p><p class="film-description film-gengers">project filmoteka<span class="film-raiting">8.1</span></p></a>`
+//     });
+//     listMovie.appendChild(movieItem)
+// }
+// getBestMovie(RANDOM_MOVIE_URL)
+const refss = {
+    header: document.querySelector('[data-index="header"]'),
+    homeBtn: document.querySelector('[data-index="home"]'),
+    myLibraryBtn: document.querySelector('[data-index="mylibrary"]')
+};
+//Function for change background image: Home
+// function homePageChange() {
+//     refss.header.classList.remove('header-background-myLibrary');
+//     refss.header.classList.add('header-background-home');
+// }
+//Function for change background image: myLibrary
+function myLibraryPageChange() {
+    refss.header.classList.remove('header-background-home');
+    refss.header.classList.add('header-background-myLibrary')
+}
+refss.myLibraryBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  myLibraryPageChange()
+  refss.myLibraryBtn.classList.add('current')
+    refss.homeBtn.classList.remove('current')
+    refs.searchForm.innerHTML =`<button class="library-button active-btn">
+                    WATCHED
+                </button>
+        
+                <button class="library-button inactive-btn">
+                    QUEUE
+                </button>`
+  refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
+})

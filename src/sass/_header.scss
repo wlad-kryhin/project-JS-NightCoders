@@ -3,7 +3,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding-top: 58px;
-  padding-bottom: 158px;
+  padding-bottom: 100px;
   @media screen and (min-width: 320px) and (max-width: 1023px) {
     width: 100%;
     background-size: cover;
@@ -47,14 +47,17 @@
   font-size: 14px;
   line-height: 1.17;
   color: $main-color-txt;
+  &::placeholder {
+    color: $main-color-txt;
+  }
 
   &:focus {
     outline: none;
     border-bottom: 1px solid $active-color-txt;
-  }
 
-  &::placeholder {
-    color: $main-color-txt;
+    &::placeholder {
+      color: $active-color-txt;
+    }
   }
 }
 .form-input-wrapper {
