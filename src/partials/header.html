@@ -1,4 +1,5 @@
 <header class="header header-background header-background-home" data-index="header">
+  <div class="container">
   <nav class="nav" data-index="navigation">
     <a href="./index.html" class="nav-logo logo-style">
       <svg class="nav-logo-icon">
@@ -6,13 +7,32 @@
       </svg>
       <span class="logo-text">Filmoteka</span>
     </a>
-    <button class="nav-btn current" data-index="home">HOME</button>
-    <button class="nav-btn" data-index="mylibrary">MY LIBRARY</button>
+    <a class="nav-btn current" data-index="home" href="./index.html">HOME</a>
+    <a class="nav-btn" data-index="mylibrary">MY LIBRARY</a>
   </nav>
+<div class="theme-switch">
+  <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
+    <use href="./images/sprite.svg#sun"></use>
+  </svg>
+
+  <div class="theme-switch__control">
+    <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+      aria-label="Переключить между тёмной и светлой темой" />
+    <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+    </label>
+    <div aria-hidden="true" class="theme-switch__marker"></div>
+  </div>
+
+  <svg class="theme-switch__icon" aria-label="Иконка луны">
+    <use href="./images/sprite.svg#moon"></use>
+  </svg>
+</div>
+</div>
+
   <form class="search-film" action="" data-index="search-form">
     <span class="form-input-wrapper">
       <input class="search-film-input" data-index="serchInfo" type="text" id="searchQuery" name="query" autocomplete="off"
-        placeholder="Поиск фильмов" />
+        placeholder="Search films .." />
       <button class="submit-button" type="submit" id="submit">
         <svg class="search-icon">
           <use href="./images/sprite.svg#icon-search"></use>
@@ -20,6 +40,7 @@
       </button>
     </span>
   </form>
+</div>
 </header>
 
 <!-- <header class="header header-background-home" data-index="header">
@@ -30,11 +51,9 @@
         </svg>
         <span class="logo-text">Filmoteka</span>
         </a>
-        <button class="nav-btn current" data-index="home">HOME</button>
-        <button class="nav-btn" data-index="mylibrary">MY LIBRARY</button> -->
-    
-
-            <!-- <form class="library-buttons is-hidden">
+        <a class="nav-btn current" data-index="home">HOME</a>
+        <a class="nav-btn" data-index="mylibrary">MY LIBRARY</a>
+         <form class="library-buttons is-hidden">
                 <button class="library-button active-btn">
                     WATCHED
                 </button>
