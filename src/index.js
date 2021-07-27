@@ -35,7 +35,7 @@ function onSearch(e) {
   if (filmsApiService.query === '') {
     return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
   }
-
+  filmsApiService.resetPage();
   loadMoreBtn.show();
   loadMoreBtn.disable();
   clearFilmsContainer();
@@ -55,7 +55,3 @@ function appendFilmsMarkup(films) {
 function clearFilmsContainer() {
   refs.filmsContainer.innerHTML = '';
 }
-
-// Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
-// id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
-//Hello

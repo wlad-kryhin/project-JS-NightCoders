@@ -1,28 +1,33 @@
 import genres from '../json/genres.json';
 
 export default function filmsTemp(data) {
-  console.log(genres);
   const makeStringOfGenres = ids => {
-    ids.map(id => {
-      if (genres.id === id) {
-        return genre.name;
-      }
-    });
+    let result=[]
+    for (const id of ids) {
+       for (const genre of genres){
+           if (genre.id===id){
+               result.push(genre.name)
+           }
+       }
+    }
+    if(result.length>2){
+        result.length=2
+    }
+    return result.join(', ')
   };
 
-  console.log(makeStringOfGenres([16, 35, 10751, 878]));
-
   let result = data
-    .map(movie => {
-      const movieItem = `<li class="film-item">
+    .map(movie=> {
+        const {poster_path, original_title, release_date, genre_ids, vote_average}= movie     
+        const movieItem = `<li class="film-item">
                   <a href="" class="film-link">
                   <img src="https://image.tmdb.org/t/p/w342/${
-                    movie.poster_path
+                    poster_path
                   }" alt="{{original_title}}" class="film-img">
-                  <p class="film-description">${movie.original_title}
+                  <p class="film-description">${original_title}
                   </p>
-                  <p class="film-description  film-gengers">${movie.genre_ids},       
-          Other || ${movie.release_date.slice(0, 4)}
+                  <p class="film-description  film-gengers">${makeStringOfGenres(genre_ids)},       
+          Other | ${release_date.slice(0, 4)} <span class="film-raiting">${vote_average}<span>
                   </p>
                   </a>
                   </li>`;
