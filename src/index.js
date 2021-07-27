@@ -4,7 +4,7 @@ import './sass/main.scss';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
-import filmsTemp from './templates/cardsTemplate.hbs';
+import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
@@ -59,18 +59,3 @@ function clearFilmsContainer() {
 // Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
 // id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
 //Hello
-
-// function showCards(data) {
-//     listMovie.innerHTML =''
-//     data.forEach(movie => {
-//         const { title, poster_path} = movie
-//         const movieItem = document.createElement('li')
-//         movieItem.className = 'film-item'
-//         movieItem.innerHTML = `<a href="" class="film-link">
-//          <img src="${poster_path}" alt="" class="film-img">
-//          <p class="film-description"> ${title}
-//          </p><p class="film-description film-gengers">project filmoteka<span class="film-raiting">8.1</span></p></a>`
-//     });
-//     listMovie.appendChild(movieItem)
-// }
-// getBestMovie(RANDOM_MOVIE_URL)
