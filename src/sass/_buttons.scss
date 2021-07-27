@@ -1,0 +1,85 @@
+.library-buttons {
+    display: block;
+    margin-top: 45px;
+    text-align: center;
+}
+
+// .is-hidden {
+//     display: none;
+// } 
+
+@media screen and (min-width: 320px) {
+
+    .library-button {
+        font-family: inherit;
+        font-size: 12px;
+        background: transparent;
+        text-decoration: none;
+        color: #FFFFFF;
+        height: 44px;
+        width: 130px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        border: 1px solid #FFFFFF;
+    }
+    
+    .library-button:last-child {
+        margin-left: 15px;
+    }
+}
+@media screen and (min-width: 768px) {
+
+    .library-button {
+    width: 136px;
+    }
+}
+
+.active-btn {
+    background-color: #FF6B01;
+    border: 0;
+}
+
+// @media screen and (min-width: 320px) {
+
+// .modal-button{
+//         font-family: inherit;
+//         font-size: 12px;
+//         background: transparent;
+//         text-decoration: none;
+//         color: #000000;
+//         height: 44px;
+//         width: 112px;
+//         border-radius: 5px;
+//         border: none;
+//         outline: none;
+//         cursor: pointer;
+//         text-transform: uppercase;
+//         border: 1px solid #000000;
+// }
+//     &:last-child{
+//         margin-left: 15px;
+//     }
+// }
+
+// @media screen and (min-width: 768px) {
+
+//     .modal-button{
+//         width: 125px;
+//     }
+// }
+
+// @media screen and (min-width: 1024px) {
+
+//     .modal-button{
+//         width: 136px;
+//     }
+// }
+
+// .active-modal-btn {
+//     background-color: #FF6B01;
+//     color: #FFFFFF;
+//     border: 0;
+// }
