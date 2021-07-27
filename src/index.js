@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './templates/cardsTemplate.hbs';
 import LoadMoreBtn from './js/components/load-more-btn';
