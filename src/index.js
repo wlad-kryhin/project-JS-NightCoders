@@ -1,5 +1,6 @@
 import './sass/main.scss';
 // import './js/modal.js';
+import './js/toggle'
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -73,26 +74,20 @@ function clearFilmsContainer() {
 //     listMovie.appendChild(movieItem)
 // }
 // getBestMovie(RANDOM_MOVIE_URL)
-const refss = {
+const refsHeader = {
     header: document.querySelector('[data-index="header"]'),
     homeBtn: document.querySelector('[data-index="home"]'),
     myLibraryBtn: document.querySelector('[data-index="mylibrary"]')
 };
-//Function for change background image: Home
-// function homePageChange() {
-//     refss.header.classList.remove('header-background-myLibrary');
-//     refss.header.classList.add('header-background-home');
-// }
-//Function for change background image: myLibrary
 function myLibraryPageChange() {
-    refss.header.classList.remove('header-background-home');
-    refss.header.classList.add('header-background-myLibrary')
+    refsHeader.header.classList.remove('header-background-home');
+    refsHeader.header.classList.add('header-background-myLibrary')
 }
-refss.myLibraryBtn.addEventListener('click', (e) => {
+refsHeader.myLibraryBtn.addEventListener('click', (e) => {
   e.preventDefault()
   myLibraryPageChange()
-  refss.myLibraryBtn.classList.add('current')
-    refss.homeBtn.classList.remove('current')
+  refsHeader.myLibraryBtn.classList.add('current')
+    refsHeader.homeBtn.classList.remove('current')
     refs.searchForm.innerHTML =`<button class="library-button active-btn">
                     WATCHED
                 </button>
