@@ -91,48 +91,15 @@ function myLibraryPageChange() {
 refss.myLibraryBtn.addEventListener('click', (e) => {
   e.preventDefault()
   myLibraryPageChange()
-    refss.header.innerHTML =`<nav class="nav" data-index="navigation">
-        <a href="./index.html" class="nav-logo logo-style">
-        <svg class="nav-logo-icon">
-            <use href="./images/sprite.svg#icon-logo"></use>
-        </svg>
-        <span class="logo-text">Filmoteka</span>
-        </a>
-        <a class="nav-btn" data-index="home">HOME</a>
-        <a class="nav-btn current" data-index="mylibrary">MY LIBRARY</a>
-        </nav>
-         <form class="library-buttons">
-                <button class="library-button active-btn">
+  refss.myLibraryBtn.classList.add('current')
+    refss.homeBtn.classList.remove('current')
+    refs.searchForm.innerHTML =`<button class="library-button active-btn">
                     WATCHED
                 </button>
         
                 <button class="library-button inactive-btn">
                     QUEUE
-                </button>
-            </form>`
+                </button>`
+  refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
 })
-refss.homeBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-  homePageChange()
-    refss.header.innerHTML =`<nav class="nav" data-index="navigation">
-    <a href="./index.html" class="nav-logo logo-style">
-      <svg class="nav-logo-icon">
-        <use href="./images/sprite.svg#icon-logo"></use>
-      </svg>
-      <span class="logo-text">Filmoteka</span>
-    </a>
-    <a class="nav-btn current" data-index="home">HOME</a>
-    <a class="nav-btn" data-index="mylibrary">MY LIBRARY</a>
-  </nav>
-  <form class="search-film" action="" data-index="search-form">
-    <span class="form-input-wrapper">
-      <input class="search-film-input" data-index="serchInfo" type="text" id="searchQuery" name="query" autocomplete="off"
-        placeholder="Поиск фильмов" />
-      <button class="submit-button" type="submit" id="submit">
-        <svg class="search-icon">
-          <use href="./images/sprite.svg#icon-search"></use>
-        </svg>
-      </button>
-    </span>
-  </form>`
-})
+

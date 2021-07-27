@@ -22,6 +22,11 @@
     cursor: pointer;
     text-transform: uppercase;
     border: 1px solid #ffffff;
+    &:hover,
+    &:focus {
+      background-color: $color-btn-bg;
+      border: transparent;
+    }
   }
 
   .library-button:last-child {
