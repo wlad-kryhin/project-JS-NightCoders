@@ -1,45 +1,42 @@
 .library-buttons {
-    display: block;
-    margin-top: 45px;
-    text-align: center;
+  display: block;
+  text-align: center;
 }
 
 // .is-hidden {
 //     display: none;
-// } 
+// }
 
 @media screen and (min-width: 320px) {
+  .library-button {
+    font-family: inherit;
+    font-size: 12px;
+    background: transparent;
+    text-decoration: none;
+    color: #ffffff;
+    height: 44px;
+    width: 130px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid #ffffff;
+  }
 
-    .library-button {
-        font-family: inherit;
-        font-size: 12px;
-        background: transparent;
-        text-decoration: none;
-        color: #FFFFFF;
-        height: 44px;
-        width: 130px;
-        border-radius: 5px;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        text-transform: uppercase;
-        border: 1px solid #FFFFFF;
-    }
-    
-    .library-button:last-child {
-        margin-left: 15px;
-    }
+  .library-button:last-child {
+    margin-left: 15px;
+  }
 }
 @media screen and (min-width: 768px) {
-
-    .library-button {
+  .library-button {
     width: 136px;
-    }
+  }
 }
 
 .active-btn {
-    background-color: #FF6B01;
-    border: 0;
+  background-color: #ff6b01;
+  border: 0;
 }
 
 // @media screen and (min-width: 320px) {
