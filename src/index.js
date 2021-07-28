@@ -8,7 +8,7 @@ import LoadMoreBtn from './js/components/load-more-btn';
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
-  //   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+  loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
 const loadMoreBtn = new LoadMoreBtn({
   selector: '[data-action="load-more"]',
@@ -42,9 +42,16 @@ function onSearch(e) {
   showModal(); // fn для модалки
 }
 
+// function onLoadMore() {
+//   loadMoreBtn.disable();
+//   filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+// }
+
 function onLoadMore() {
   loadMoreBtn.disable();
-  filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+  setTimeout(() => {
+   filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+  }, 1500)
 }
 
 function appendFilmsMarkup(films) {
