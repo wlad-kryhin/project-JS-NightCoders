@@ -105,6 +105,8 @@
 }
 
 .movie-card__image {
+  border-radius: 5px;
+  object-fit: cover;
   width: 242px;
   height: 356px;
   @media screen and (min-width: 768px) {
@@ -164,6 +166,7 @@
   color: $secondary-color-txt;
   padding: 0;
   margin-bottom: 26px;
+  min-width: 120px;
 }
 
 .movie__stats-item:not(:last-child) {
@@ -200,4 +203,16 @@
   font-size: 0.75rem;
   line-height: 1.25rem;
   color: #000000;
+}
+.margin_none {
+  margin: 0px;
+}
+
+.movie-card__lists {
+  display: flex;
+  justify-content: space-between;
+  max-width: 215px;
+  @media screen and (min-width: 1024px) {
+    max-width: 259px;
+  }
 }

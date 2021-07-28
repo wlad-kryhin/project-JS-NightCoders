@@ -1,8 +1,8 @@
 import './sass/main.scss';
 // import './js/modal.js';
-import Spinner from './js/spinner'
+import Spinner from './js/spinner';
 import './js/btn-scroll';
-import './js/toggle'
+import './js/toggle';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -53,8 +53,8 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable();
   setTimeout(() => {
-   filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
-  }, 1500)
+    filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+  }, 1500);
 }
 
 function appendFilmsMarkup(films) {
@@ -65,47 +65,29 @@ function clearFilmsContainer() {
   refs.filmsContainer.innerHTML = '';
 }
 
-// Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
-// id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
-//Hello
-
-// function showCards(data) {
-//     listMovie.innerHTML =''
-//     data.forEach(movie => {
-//         const { title, poster_path} = movie
-//         const movieItem = document.createElement('li')
-//         movieItem.className = 'film-item'
-//         movieItem.innerHTML = `<a href="" class="film-link">
-//          <img src="${poster_path}" alt="" class="film-img">
-//          <p class="film-description"> ${title}
-//          </p><p class="film-description film-gengers">project filmoteka<span class="film-raiting">8.1</span></p></a>`
-//     });
-//     listMovie.appendChild(movieItem)
-// }
-// getBestMovie(RANDOM_MOVIE_URL)
 const refsHeader = {
-    header: document.querySelector('[data-index="header"]'),
-    homeBtn: document.querySelector('[data-index="home"]'),
-    myLibraryBtn: document.querySelector('[data-index="mylibrary"]')
+  header: document.querySelector('[data-index="header"]'),
+  homeBtn: document.querySelector('[data-index="home"]'),
+  myLibraryBtn: document.querySelector('[data-index="mylibrary"]'),
 };
 function myLibraryPageChange() {
-    refsHeader.header.classList.remove('header-background-home');
-    refsHeader.header.classList.add('header-background-myLibrary')
+  refsHeader.header.classList.remove('header-background-home');
+  refsHeader.header.classList.add('header-background-myLibrary');
 }
-refsHeader.myLibraryBtn.addEventListener('click', (e) => {
-  e.preventDefault()
-  myLibraryPageChange()
-  refsHeader.myLibraryBtn.classList.add('current')
-    refsHeader.homeBtn.classList.remove('current')
-    refs.searchForm.innerHTML =`<button class="library-button active-btn">
+refsHeader.myLibraryBtn.addEventListener('click', e => {
+  e.preventDefault();
+  myLibraryPageChange();
+  refsHeader.myLibraryBtn.classList.add('current');
+  refsHeader.homeBtn.classList.remove('current');
+  refs.searchForm.innerHTML = `<button class="library-button active-btn">
                     WATCHED
                 </button>
         
                 <button class="library-button inactive-btn">
                     QUEUE
-                </button>`
-  refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
-})
+                </button>`;
+  refs.filmsContainer.innerHTML = `НИЧЕГО НЕ НАЙДЕНО`;
+});
 
-const spinnerP = new Spinner()
-spinnerP.render()
+const spinnerP = new Spinner();
+// spinnerP.render()
