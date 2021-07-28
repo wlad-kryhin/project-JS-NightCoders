@@ -1,0 +1,32 @@
+
+<div id="modal__win" class="modal js-modal">
+    <button type="button" class="modal__button-close" data-action="close-modal"></button>
+    <div class="modal__content js-modal__content">
+        <div class="movie-card js-movie-card">
+            <picture class="img-container">
+                <img class="movie-card__image" src="https://image.tmdb.org/t/p/w342/{{poster_path}}" alt="movie poster" />
+            </picture>
+            <div class="movie-card__description">
+                <h2 class="movie__title">{{original_title}}</h2>
+                <ul class="movie__stats-list">
+                    <li class="movie__stats-item">Vote / Votes</li>
+                    <li class="movie__stats-item">Popularity</li>
+                    <li class="movie__stats-item">Original Title</li>
+                    <li class="movie__stats-item">Genre</li>
+                </ul>
+                <ul class="movie__stats-list">
+                    <li class="movie__stats-item">{{vote_average}} / {{vote_count}}</li>
+                    <li class="movie__stats-item">{{popularity}}</li>
+                    <li class="movie__stats-item">{{original_title}}</li>
+                    <li class="movie__stats-item">{{genres}}</li>
+                </ul>
+                <div class="movie__description-text">
+                    <h3 class="movie__description-title">ABOUT</h3>
+                    <p class="movie__description">{{overview}}
+                    </p>
+                </div>
+                <div class="some-btn"></div>
+            </div>
+        </div>
+    </div>
+</div>
