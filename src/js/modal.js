@@ -29,27 +29,22 @@ document.addEventListener('click', onClickInNotModal);
 
 /* -------------render/clear------------- */
 
-async function renderMovieCard(id) {
-  const resonse = await fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`);
-  const movie = await resonse.json();
-  const marcupMovieCard = movieCardTpl(movie);
-  refs.modalContentEl.insertAdjacentHTML('beforeend', marcupMovieCard);
-}
+// async function renderMovieCard(id) {
+//   const resonse = await fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}&language=en-US`);
+//   const movie = await resonse.json();
+//   const marcupMovieCard = movieCardTpl(movie);
+//   refs.modalContentEl.insertAdjacentHTML('beforeend', marcupMovieCard);
+// }
 
-function clearMovieCard() {
-  // refs.modalContentEl.innerHTML = '';
-}
 
 /* -----------show---------------- */
 
 function showModal(event) {
   event.preventDefault();
-  clearMovieCard();
   /* Миша */
   renderModal(event.target.id);
   // renderMovieCard(event.target.id);
-
-  onOpenModal();
+setTimeout(()=>onOpenModal(),300)
 }
 
 /* ----------------open/close---------------- */
@@ -69,6 +64,7 @@ function onClickEscape(event) {
 }
 
 function onCloseModal() {
+  //  refs.modalContentEl.innerHTML = '';
   refs.modalEl.classList.add('is-hidden');
   refs.bodyEl.classList.remove('hidden');
 }
@@ -82,6 +78,7 @@ function onClickInNotModal(event) {
 /* Миша */
 
 async function renderModal(id) {
+  
   const resonse = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
   );

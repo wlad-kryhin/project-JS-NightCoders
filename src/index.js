@@ -89,6 +89,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = `НИЧЕГО НЕ НАЙДЕНО`;
+  localStoragePlugin.fetchWatchedCards()
 });
 
 const spinnerP = new Spinner();

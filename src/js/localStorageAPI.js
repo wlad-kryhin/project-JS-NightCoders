@@ -57,7 +57,21 @@ export default class LocaleStorageAPI{
         try {
             const arrayWatched =JSON.parse(localStorage.getItem(this.keyWatch))
             arrayWatched.forEach(id => {
-                renderModal(id)
+                async function fetchCardData(id) {
+                     const resonse = await fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
+  );
+  const movie = await resonse.json();
+    refs.fil.innerHTML = `<li class="film-item">
+                  <a href="" class="film-link">
+                  <img src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="{{original_title}}" class="film-img" id="${id}">
+                  <p class="film-description">${original_title}
+                  </p>
+                  <p class="film-description  film-gengers">${makeStringOfGenres(genre_ids)},       
+          Other | ${release_date.slice(0, 4)} <span class="film-raiting">${vote_average}<span>
+                  </p>
+                  </a>
+                  </li>`   }
             })
         }
         catch (error) {
