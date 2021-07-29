@@ -33,3 +33,4 @@ export default function filmsTemp(data) {
     .join('');
   return result;
 }
+
