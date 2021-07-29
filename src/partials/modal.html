@@ -1,7 +1,23 @@
-<div id="modal__win" class="modal js-modal">
+<div class="modal__backdrop is-hidden" id="modal__win">
+  <div class="modal js-modal">
+    <button type="button" class="modal__button-close" data-action="close-modal">
+      <svg width="40" height="40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M29.667 12.88L27.787 11l-7.454 7.453L12.88 11 11 12.88l7.453 7.453L11 27.787l1.88 1.88 7.453-7.454 7.454 7.454 1.88-1.88-7.454-7.454 7.454-7.453z"
+          fill="#212121"
+        />
+      </svg>
+    </button>
+    <div class="modal__content js-modal__content">
+      <!-- Отрисовка карточки  -->
+    </div>
+  </div>
+</div>
+
+<!-- Миша -->
+<!-- <div id="modal__win" class="modal js-modal">
   <button type="button" class="modal__button-close" data-action="close-modal"></button>
   <div class="modal__content js-modal__content">
-    <!-- временная отрисовка карточки  -->
     <div class="movie-card js-movie-card">
       <picture class="img-container">
         <img class="movie-card__image" src="./images/movie-poster.jpg" alt="movie poster" />
@@ -17,7 +33,7 @@
           </ul>
           <ul class="movie__stats-list-values">
             <li class="movie__stats-item film-description">
-              <span class="film-raiting margin_none" data-action="vote_average"></span>/
+              <span class="film-raiting " data-action="vote_average"></span>/
               <span data-action="vote_count"></span>
             </li>
             <li class="movie__stats-item film-description" data-action="popularity"></li>
@@ -25,17 +41,16 @@
             <li class="movie__stats-item film-description" data-action="genre"></li>
           </ul>
         </div>
-       
+
         <div class="movie__description-text">
           <h3 class="movie__description-title">ABOUT</h3>
-          <p class="movie__description">
-          </p>
+          <p class="movie__description"></p>
         </div>
-        <div >
+        <div>
           <button class="library-button active-btn">add to Watched</button>
           <button class="library-button transparent-btn">add to queue</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
