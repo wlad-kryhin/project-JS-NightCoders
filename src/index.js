@@ -1,7 +1,7 @@
 import './sass/main.scss';
 // import './js/modal.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
-import  LocaleStorageAPI from './js/localStorageAPI';
+import LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
@@ -10,6 +10,7 @@ import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
+import getMovies from './js/myLibraryCards';
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
@@ -89,14 +90,16 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = `НИЧЕГО НЕ НАЙДЕНО`;
-  localStoragePlugin.fetchWatchedCards()
+  localStoragePlugin.fetchWatchedCards();
 });
 
 const spinnerP = new Spinner();
 // spinnerP.active()
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
-const localStoragePlugin = new LocaleStorageAPI()
-btnWatch.addEventListener('click', (e) => {
-  e.preventDefault()
-  localStoragePlugin.saveValueWatched(e.target.id)
-})
+const localeStorageAPI = new LocaleStorageAPI();
+btnWatch.addEventListener('click', e => {
+  e.preventDefault();
+  localStoragePlugin.saveValueWatched(e.target.id);
+});
+
+console.log(getMovies(localeStorageAPI.getValueWatched()));
