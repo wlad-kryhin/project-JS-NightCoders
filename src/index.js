@@ -4,6 +4,7 @@ import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import  LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
 import './js/toggle';
+import './js/modal.js';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -93,8 +94,9 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 const spinnerP = new Spinner();
 // spinnerP.active()
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
-const localStoragePlagin = new LocaleStorageAPI()
+// const btnWatch = document.querySelector('.library-button');
+const localStoragePlugin = new LocaleStorageAPI()
 btnWatch.addEventListener('click', (e) => {
   e.preventDefault()
-  localStoragePlagin.saveValueWatched(e.target.id)
+  localStoragePlugin.saveValueWatched(e.target.id)
 })
