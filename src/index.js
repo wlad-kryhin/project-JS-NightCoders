@@ -11,6 +11,7 @@ import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
 import getMovies from './js/myLibraryCards';
+import renderFilmsLibrary from './js/myLibraryCards';
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
@@ -89,8 +90,8 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
                 <button class="library-button inactive-btn">
                     QUEUE
                 </button>`;
-  refs.filmsContainer.innerHTML = `НИЧЕГО НЕ НАЙДЕНО`;
-  localStoragePlugin.fetchWatchedCards();
+  refs.filmsContainer.innerHTML = '';
+  renderFilmsLibrary(localeStorageAPI.getValueWatched());
 });
 
 const spinnerP = new Spinner();
@@ -99,7 +100,6 @@ const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
 const localeStorageAPI = new LocaleStorageAPI();
 btnWatch.addEventListener('click', e => {
   e.preventDefault();
-  localStoragePlugin.saveValueWatched(e.target.id);
+  localeStorageAPI.saveValueWatched(e.target.id);
 });
 
-console.log(getMovies(localeStorageAPI.getValueWatched()));
