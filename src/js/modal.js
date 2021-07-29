@@ -14,6 +14,8 @@ const refs = {
   movieListTitle: document.querySelector('[data-action="original-title"]'),
   movieGenre: document.querySelector('[data-action="genre"]'),
   movieAbout: document.querySelector('.movie__description'),
+  modalBtnAddWatched: document.querySelector('[data-action="modalBtnAddWatched"]'),
+  movieBtnQueue: document.querySelector('[data-action="movieBtnQueue"]'),
 };
 
 refs.closeBtnEl.addEventListener('click', onCloseModal);
@@ -63,6 +65,8 @@ async function renderModal(id) {
   refs.movieListTitle.innerHTML = movie.original_title;
   refs.movieGenre.innerHTML = movie.genres[0].name;
   refs.movieAbout.innerHTML = movie.overview;
+  refs.modalBtnAddWatched.id = movie.id;
+  refs.movieBtnQueue.id = movie.id;
 }
 
 export default showModal;
