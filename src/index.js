@@ -94,7 +94,6 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 const spinnerP = new Spinner();
 // spinnerP.active()
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
-// const btnWatch = document.querySelector('.library-button');
 const localStoragePlugin = new LocaleStorageAPI()
 btnWatch.addEventListener('click', (e) => {
   e.preventDefault()

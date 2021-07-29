@@ -54,8 +54,8 @@ function showModal(event) {
   event.preventDefault();
   clearMovieCard();
   /* Миша */
-  // renderModal(event.target.id);
-  renderMovieCard(event.target.id);
+  renderModal(event.target.id);
+  // renderMovieCard(event.target.id);
 
   onOpenModal();
 }
