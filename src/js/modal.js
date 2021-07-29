@@ -51,8 +51,8 @@ function onClickInNotModal(event) {
     onCloseModal();
   }
 }
-
-async function renderModal(id) {
+ 
+async function renderModal(id){
   const resonse = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
   );

@@ -1,6 +1,7 @@
 import './sass/main.scss';
 // import './js/modal.js';
-import Spinner from './js/spinner';
+import Spinner from './js/spinner'; // import Spinner(active , hidden)
+import  LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
 import './js/toggle';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
@@ -90,4 +91,10 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 });
 
 const spinnerP = new Spinner();
-// spinnerP.render()
+// spinnerP.active()
+const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
+const localStoragePlagin = new LocaleStorageAPI()
+btnWatch.addEventListener('click', (e) => {
+  e.preventDefault()
+  localStoragePlagin.saveValueWatched(e.target.id)
+})

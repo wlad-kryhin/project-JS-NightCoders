@@ -1,6 +1,6 @@
 const spinner = document.querySelector('#spinner-js')
 export default class Spinner {
-    render() {
+    active() {
         const contentSpinner = `<div
 class="loading-eclipse">
   <div class="spinnerEl">
@@ -10,7 +10,7 @@ class="loading-eclipse">
 </div>`
        return spinner.innerHTML = contentSpinner
     }
-    clear() {
+    hidden() {
         spinner.innerHTML =''
     }
 }
