@@ -1,8 +1,8 @@
 import LocaleStorageAPI from './localStorageAPI';
-
+import cardsTemplate from '../templates/cardsTemplate.hbs';
+const container = document.querySelector('.film-list')
 const localeStorageAPI = new LocaleStorageAPI();
-
-export default async function getMovies(idList) {
+ async function getMovies(idList) {
   const key = '84867915c8b3aadc91d5efa8c22e1ab6';
 
   const promises = idList.map(id => {
@@ -18,9 +18,13 @@ export default async function getMovies(idList) {
   return await Promise.all(promises);
 }
 
-function renderFilmsLibrary(id) {
-  const watchedFilms = localeStorageAPI.getValueWatched(id);
+export default function renderFilmsLibrary() {
+  const watchedFilms = localeStorageAPI.getValueWatched();
   if (watchedFilms.length) {
-    getMovies(watchedFilms).then(res => filmsContainer.innerHTML());
+    getMovies(watchedFilms).then(res => libraryCardsMarkup(res))
+    };
   }
+
+function libraryCardsMarkup(data) {
+ return  container.innerHTML = cardsTemplate(data)
 }

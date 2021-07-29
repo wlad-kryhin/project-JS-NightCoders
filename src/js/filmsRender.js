@@ -1,5 +1,4 @@
 import genres from '../json/genres.json';
-
 export default function filmsTemp(data) {
   const makeStringOfGenres = ids => {
     let result = [];
