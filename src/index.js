@@ -8,6 +8,8 @@ import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
+import './js/library-background';
+
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
@@ -104,7 +106,7 @@ refsHeader.myLibraryBtn.addEventListener('click', (e) => {
                 <button class="library-button inactive-btn">
                     QUEUE
                 </button>`
-  refs.filmsContainer.innerHTML=`НИЧЕГО НЕ НАЙДЕНО`
+  refs.filmsContainer.innerHTML=`THERE'S NOTHING HERE`;
 })
 
 const spinnerP = new Spinner()
