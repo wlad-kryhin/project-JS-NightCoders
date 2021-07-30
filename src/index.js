@@ -5,6 +5,8 @@ import LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
+import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
+import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -98,30 +100,17 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 
 const spinnerP = new Spinner();
 // spinnerP.active()
+
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
 const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
 const localeStorageAPI = new LocaleStorageAPI();
 btnWatch.addEventListener('click', e => {
   e.preventDefault();
-  e.target.classList.toggle('transparent-btn');
-  e.target.classList.toggle('active-btn');
-  if (e.target.textContent === 'Added') {
-    e.target.textContent = 'Add to watched';
-  } else if ((e.target.textContent = 'Add to watched')) {
-    e.target.textContent = 'Added';
-  }
-
   localeStorageAPI.saveValueWatched(e.target.id);
+  checkButtonsStatusAdd();
 });
 btnQueue.addEventListener('click', e => {
   e.preventDefault();
-  e.target.classList.toggle('transparent-btn');
-  e.target.classList.toggle('active-btn');
-  if (e.target.textContent === 'Added') {
-    e.target.textContent = 'Add to queue';
-  } else if ((e.target.textContent = 'Add to queue')) {
-    e.target.textContent = 'Added';
-  }
-
   localeStorageAPI.saveValueQueue(e.target.id);
+  checkButtonsStatusQueue();
 });

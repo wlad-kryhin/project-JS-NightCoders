@@ -1,7 +1,10 @@
 const API_KEY = 'f67bdd430ce819844e2a075541409928';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-import movieCardTpl from '../templates/movieCard.hbs';
+import LocaleStorageAPI from './localStorageAPI';
+import checkButtonsStatusAdd from './components/buttonsWatchedStatus';
+import checkButtonsStatusQueue from './components/buttonsQueueStatus';
+const localeStorageAPI = new LocaleStorageAPI();
 
 const refs = {
   modalEl: document.querySelector('#modal__win'),
@@ -63,13 +66,8 @@ function onClickEscape(event) {
 }
 
 function onCloseModal() {
-  //  refs.modalContentEl.innerHTML = '';
   refs.modalEl.classList.add('is-hidden');
   refs.bodyEl.classList.remove('hidden');
-  refs.modalBtnAddWatched.classList.replace('active-btn', 'transparent-btn');
-  refs.modalBtnAddWatched.textContent = 'Add to watched';
-  refs.movieBtnQueue.classList.replace('active-btn', 'transparent-btn');
-  refs.movieBtnQueue.textContent = 'Add to queue';
 }
 
 function onClickInNotModal(event) {
@@ -84,6 +82,7 @@ async function renderModal(id) {
   const resonse = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
   );
+
   const movie = await resonse.json();
   refs.movieTitle.innerHTML = movie.original_title;
   refs.movieCard.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
@@ -95,6 +94,8 @@ async function renderModal(id) {
   refs.movieAbout.innerHTML = movie.overview;
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
+  checkButtonsStatusAdd();
+  checkButtonsStatusQueue();
 }
 
 export default showModal;
