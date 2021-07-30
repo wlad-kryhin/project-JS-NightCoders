@@ -18,8 +18,8 @@ async function getMovies(idList) {
   return await Promise.all(promises);
 }
 
-export default function renderFilmsLibrary() {
-  const watchedFilms = localeStorageAPI.getValueWatched();
+export default function renderFilmsLibrary(whatToRender) {
+  const watchedFilms = whatToRender;
   if (watchedFilms.length) {
     getMovies(watchedFilms).then(res => res.forEach(movie => libraryCardsMarkup(movie)));
   }

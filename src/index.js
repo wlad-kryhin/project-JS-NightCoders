@@ -87,15 +87,34 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
   myLibraryPageChange();
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
-  refs.searchForm.innerHTML = `<button class="library-button active-btn">
+  refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
                     WATCHED
                 </button>
         
-                <button class="library-button inactive-btn">
+                <button class="library-button" data-action="show-queue">
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = '';
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
+
+  const refsShow = {
+    showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
+    showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
+  };
+  refsShow.showWatchedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueWatched());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showQueuedBtn.classList.remove('active-btn');
+  });
+  refsShow.showQueuedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueQueue());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showWatchedBtn.classList.remove('active-btn');
+  });
 });
 
 const spinnerP = new Spinner();
