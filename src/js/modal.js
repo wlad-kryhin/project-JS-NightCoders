@@ -36,7 +36,6 @@ document.addEventListener('click', onClickInNotModal);
 //   refs.modalContentEl.insertAdjacentHTML('beforeend', marcupMovieCard);
 // }
 
-
 /* -----------show---------------- */
 
 function showModal(event) {
@@ -44,7 +43,7 @@ function showModal(event) {
   /* Миша */
   renderModal(event.target.id);
   // renderMovieCard(event.target.id);
-setTimeout(()=>onOpenModal(),300)
+  setTimeout(() => onOpenModal(), 300);
 }
 
 /* ----------------open/close---------------- */
@@ -67,6 +66,10 @@ function onCloseModal() {
   //  refs.modalContentEl.innerHTML = '';
   refs.modalEl.classList.add('is-hidden');
   refs.bodyEl.classList.remove('hidden');
+  refs.modalBtnAddWatched.classList.replace('active-btn', 'transparent-btn');
+  refs.modalBtnAddWatched.textContent = 'Add to watched';
+  refs.movieBtnQueue.classList.replace('active-btn', 'transparent-btn');
+  refs.movieBtnQueue.textContent = 'Add to queue';
 }
 
 function onClickInNotModal(event) {
@@ -78,7 +81,6 @@ function onClickInNotModal(event) {
 /* Миша */
 
 async function renderModal(id) {
-  
   const resonse = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
   );

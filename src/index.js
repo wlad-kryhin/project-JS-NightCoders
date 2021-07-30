@@ -99,9 +99,29 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 const spinnerP = new Spinner();
 // spinnerP.active()
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
+const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
 const localeStorageAPI = new LocaleStorageAPI();
 btnWatch.addEventListener('click', e => {
   e.preventDefault();
+  e.target.classList.toggle('transparent-btn');
+  e.target.classList.toggle('active-btn');
+  if (e.target.textContent === 'Added') {
+    e.target.textContent = 'Add to watched';
+  } else if ((e.target.textContent = 'Add to watched')) {
+    e.target.textContent = 'Added';
+  }
+
   localeStorageAPI.saveValueWatched(e.target.id);
 });
+btnQueue.addEventListener('click', e => {
+  e.preventDefault();
+  e.target.classList.toggle('transparent-btn');
+  e.target.classList.toggle('active-btn');
+  if (e.target.textContent === 'Added') {
+    e.target.textContent = 'Add to queue';
+  } else if ((e.target.textContent = 'Add to queue')) {
+    e.target.textContent = 'Added';
+  }
 
+  localeStorageAPI.saveValueQueue(e.target.id);
+});
