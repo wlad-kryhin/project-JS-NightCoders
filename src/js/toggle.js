@@ -39,4 +39,5 @@ const section = document.querySelector('.section-hero')
     }
   }
   
-  currentThemeWebSite();
+currentThemeWebSite();
+export {currentThemeWebSite}

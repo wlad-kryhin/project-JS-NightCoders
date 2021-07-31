@@ -1,3 +1,4 @@
+
 .clock{
     width: 120px;
     height: 120px;
@@ -80,4 +81,19 @@
     background-color: #fff;
     z-index: 12;
     border-radius: 6px 6px 0 0;
+}
+#clock {
+  font-family: 'Roboto', sans-serif;
+  color: #ff7f50;
+  text-shadow: 0 0 20px #ddeaee, 0 0 20px rgba(10, 175, 230, 0);
+  font-size: 20px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  align-items: center;
+
+  // text-align: center;
+  // padding-top: 40px;
+  // padding-bottom: 40px;
 }

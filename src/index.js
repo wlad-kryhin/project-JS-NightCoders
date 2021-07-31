@@ -17,6 +17,7 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
+import { currentThemeWebSite} from './js/toggle';
 
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
@@ -88,6 +89,7 @@ function myLibraryPageChange() {
 refsHeader.myLibraryBtn.addEventListener('click', e => {
   e.preventDefault();
   myLibraryPageChange();
+  currentThemeWebSite()
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
