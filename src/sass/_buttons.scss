@@ -18,8 +18,7 @@
     cursor: pointer;
     text-transform: uppercase;
     border: 1px solid #ffffff;
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $color-btn-bg;
       border: transparent;
     }

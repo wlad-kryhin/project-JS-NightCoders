@@ -5,6 +5,8 @@ import LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
+import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
+import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
@@ -85,23 +87,49 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
   myLibraryPageChange();
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
-  refs.searchForm.innerHTML = `<button class="library-button active-btn">
+  refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
                     WATCHED
                 </button>
         
-                <button class="library-button inactive-btn">
+                <button class="library-button" data-action="show-queue">
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = '';
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
+
+  const refsShow = {
+    showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
+    showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
+  };
+  refsShow.showWatchedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueWatched());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showQueuedBtn.classList.remove('active-btn');
+  });
+  refsShow.showQueuedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueQueue());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showWatchedBtn.classList.remove('active-btn');
+  });
 });
 
 const spinnerP = new Spinner();
 // spinnerP.active()
+
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
+const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
 const localeStorageAPI = new LocaleStorageAPI();
 btnWatch.addEventListener('click', e => {
   e.preventDefault();
   localeStorageAPI.saveValueWatched(e.target.id);
+  checkButtonsStatusAdd();
 });
-
+btnQueue.addEventListener('click', e => {
+  e.preventDefault();
+  localeStorageAPI.saveValueQueue(e.target.id);
+  checkButtonsStatusQueue();
+});
