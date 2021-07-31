@@ -18,6 +18,7 @@ import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 
 const refs = {
+  slider: document.querySelector('.slider-wrapper'),
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
@@ -91,18 +92,17 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
                     WATCHED
                 </button>
-        
                 <button class="library-button" data-action="show-queue">
                     QUEUE
-                </button>`
-  refs.filmsContainer.innerHTML=`THERE'S NOTHING HERE`;
+                </button>`;
+  refs.filmsContainer.innerHTML = '';
+  refs.slider.style.display = 'none'
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
-})
-
   const refsShow = {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
-   showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
+    showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
   };
+  console.log(refsShow.showWatchedBtn);
   refsShow.showWatchedBtn.addEventListener('click', e => {
     e.preventDefault();
     clearFilmsContainer();
@@ -117,6 +117,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     e.currentTarget.classList.add('active-btn');
     refsShow.showWatchedBtn.classList.remove('active-btn');
   });
+});
 
 const spinnerP = new Spinner();
 // spinnerP.active()

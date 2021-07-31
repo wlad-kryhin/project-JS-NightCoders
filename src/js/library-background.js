@@ -1,4 +1,8 @@
-
+import LocaleStorageAPI from "./localStorageAPI";
+const localeStorageAPI = new LocaleStorageAPI()
+if (!localeStorageAPI.getValueWatched === [] || !localeStorageAPI.getValueQueue === []) {
+    refers.backgroundLibrary.classList.remove('background-mylibrary')
+}
 const refers = {
     backgroundLibrary: document.querySelector('[data-index="background"]'),
     backgroundImage: document.querySelector('.section-hero'),
