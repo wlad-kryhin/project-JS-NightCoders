@@ -101,7 +101,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
 
   const refsShow = {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
-    showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
+   showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
   };
   refsShow.showWatchedBtn.addEventListener('click', e => {
     e.preventDefault();
