@@ -25,6 +25,8 @@ const refs = {
   movieAbout: document.querySelector('.movie__description'),
   modalBtnAddWatched: document.querySelector('[data-action="modalBtnAddWatched"]'),
   movieBtnQueue: document.querySelector('[data-action="movieBtnQueue"]'),
+
+  btnYouTube: document.querySelector('#youtube-js'),
 };
 
 refs.closeBtnEl.addEventListener('click', onCloseModal);
@@ -94,8 +96,26 @@ async function renderModal(id) {
   refs.movieAbout.innerHTML = movie.overview;
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
+  refs.btnYouTube.dataset.action = movie.id;
   checkButtonsStatusAdd();
   checkButtonsStatusQueue();
+
+  // refs.btnYouTube.addEventListener('click', e => {
+  //   return (fetchTrailer(e.target.dataset.action));
+  // })
+  
+   
+
+
+  // function fetchTrailer(id) {
+  //   const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`;
+  //   return fetch(url).then(response => response.json()).then(data => {
+  //     const src = data.results[0].key;
+  //     const elementTrailer = `<video class="trailer" src="https://www.youtube.com/embed/${src}" controls></video>`;
+  
+  //   })
+
+  // }
 }
 
 export default showModal;
