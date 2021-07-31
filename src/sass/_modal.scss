@@ -1,10 +1,32 @@
 /* MODAL */
 
-.modal {
+.is-hidden {
+  display: none;
+}
+
+.modal__backdrop {
   position: fixed;
-  display: flex;
-  visibility: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  visibility: visible;
   overflow-y: scroll;
+}
+
+.modal__backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal {
+  position: absolute;
   top: 20px;
   right: 0;
   bottom: 0;
@@ -12,35 +34,36 @@
   margin: 0 auto;
   padding-top: 48px;
   width: 280px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 250ms cubic-bezier(0.42, 0, 0.58, 1);
+  height: fit-content;
+  opacity: 1;
+  pointer-events: initial;
   background-color: $color-modal-bg;
-  border-radius: 5px;
-  z-index: 1000;
+  border-radius: 12px;
+  transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99;
 
   @media screen and (min-width: 768px) {
-    width: 618px;
+    top: 230px;
+    width: 628px;
     padding-top: 42px;
     height: fit-content;
   }
 
   @media screen and (min-width: 1024px) {
-    width: 882px;
+    top: 230px;
+    top: 70px;
+    width: 914px;
     padding-top: 50px;
   }
 }
 
-.is-open {
-  pointer-events: initial;
-  visibility: visible;
-  opacity: 1;
-}
-
 .modal__button-close {
   position: absolute;
+  display: flex;
+  align-items: center;
   top: 10px;
-  right: 10px;
+  right: 20px;
   width: 30px;
   height: 30px;
   padding: 0;
@@ -50,19 +73,14 @@
   background-color: transparent;
   color: $txt-modal-color;
   cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
-  background-image: url('../images/close.svg');
+  // background-image: url('../images/close-button.svg');
   background-position: center;
   background-repeat: no-repeat;
-
-  @media screen and (min-width: 768px) {
-    top: 10px;
-    right: 10px;
-  }
-  @media screen and (min-width: 1024px) {
-    top: 10px;
-    right: 10px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
   }
 }
 
@@ -83,6 +101,7 @@
 
 .hidden {
   overflow: hidden;
+  overflow-y: scroll;
 }
 
 /* CARD */
@@ -105,6 +124,8 @@
 }
 
 .movie-card__image {
+  border-radius: 5px;
+  object-fit: cover; //------
   width: 242px;
   height: 356px;
   @media screen and (min-width: 768px) {
@@ -130,10 +151,10 @@
   }
 }
 
-.some-btn {
+.movie-card__button {
+  display: flex;
   width: 240px;
   height: 44px;
-  background-color: $color-btn-bg;
   margin: 0 auto;
 
   @media screen and (min-width: 1024px) {
@@ -160,14 +181,84 @@
 }
 
 .movie__stats-list {
-  font-family: $font-family;
-  color: $secondary-color-txt;
+  width: inherit;
   padding: 0;
   margin-bottom: 26px;
 }
 
+/* Миша */
+
+// .movie__stats-list {
+//   font-family: $font-family;
+//   color: $secondary-color-txt;
+//   padding: 0;
+//   margin-bottom: 26px;
+//   min-width: 120px;
+// }
+
+// .movie-card__lists {
+//   display: flex;
+//   justify-content: space-between;
+//   max-width: 215px;
+//   @media screen and (min-width: 1024px) {
+//     max-width: 259px;
+//   }
+// }
+
+// .margin_none {
+//   margin: 0px;
+// }
+
+.movie__stats-item {
+  display: flex;
+}
+
 .movie__stats-item:not(:last-child) {
   margin-bottom: 12px;
+}
+
+.stats-title {
+  display: flex;
+  width: 80px;
+  padding-right: 50px;
+  white-space: nowrap;
+  margin-right: 40px;
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: $font-size-medium;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: $secondary-color-txt;
+  @media screen and (min-width: 1024px) {
+    margin-right: 64px;
+  }
+}
+
+.stats-description {
+  width: 240px;
+  display: flex;
+
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: $font-size-medium;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: $txt-modal-color;
+}
+
+.vote {
+  font-weight: $font-size-medium;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  padding: 1px 10px;
+  color: $color-modal-bg;
+  background: $color-btn-bg;
+  border-radius: 5px;
+  margin-right: 4px;
+}
+
+.original-title {
+  text-transform: uppercase;
 }
 
 .movie__description-text {

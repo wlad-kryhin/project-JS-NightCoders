@@ -1,14 +1,21 @@
 import './sass/main.scss';
 // import './js/modal.js';
-import Spinner from './js/spinner'
+import Spinner from './js/spinner'; // import Spinner(active , hidden)
+import LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
-import './js/toggle'
+import './js/toggle';
+import './js/modal.js';
+import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
+import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
 import './js/library-background';
+import getMovies from './js/myLibraryCards';
+import renderFilmsLibrary from './js/myLibraryCards';
+import './js/slider';
 
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
@@ -55,8 +62,8 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable();
   setTimeout(() => {
-   filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
-  }, 1500)
+    filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+  }, 1500);
 }
 
 function appendFilmsMarkup(films) {
@@ -67,47 +74,63 @@ function clearFilmsContainer() {
   refs.filmsContainer.innerHTML = '';
 }
 
-// Это пока оставлю, возможно будем рендерить так, т.к. нужно будет через
-// id жанров получать жанры, и дату форматировать из YYYY-MM-DD to YYYY
-//Hello
-
-// function showCards(data) {
-//     listMovie.innerHTML =''
-//     data.forEach(movie => {
-//         const { title, poster_path} = movie
-//         const movieItem = document.createElement('li')
-//         movieItem.className = 'film-item'
-//         movieItem.innerHTML = `<a href="" class="film-link">
-//          <img src="${poster_path}" alt="" class="film-img">
-//          <p class="film-description"> ${title}
-//          </p><p class="film-description film-gengers">project filmoteka<span class="film-raiting">8.1</span></p></a>`
-//     });
-//     listMovie.appendChild(movieItem)
-// }
-// getBestMovie(RANDOM_MOVIE_URL)
 const refsHeader = {
-    header: document.querySelector('[data-index="header"]'),
-    homeBtn: document.querySelector('[data-index="home"]'),
-    myLibraryBtn: document.querySelector('[data-index="mylibrary"]')
+  header: document.querySelector('[data-index="header"]'),
+  homeBtn: document.querySelector('[data-index="home"]'),
+  myLibraryBtn: document.querySelector('[data-index="mylibrary"]'),
 };
 function myLibraryPageChange() {
-    refsHeader.header.classList.remove('header-background-home');
-    refsHeader.header.classList.add('header-background-myLibrary')
+  refsHeader.header.classList.remove('header-background-home');
+  refsHeader.header.classList.add('header-background-myLibrary');
 }
-refsHeader.myLibraryBtn.addEventListener('click', (e) => {
-  e.preventDefault()
-  myLibraryPageChange()
-  refsHeader.myLibraryBtn.classList.add('current')
-    refsHeader.homeBtn.classList.remove('current')
-    refs.searchForm.innerHTML =`<button class="library-button active-btn">
+refsHeader.myLibraryBtn.addEventListener('click', e => {
+  e.preventDefault();
+  myLibraryPageChange();
+  refsHeader.myLibraryBtn.classList.add('current');
+  refsHeader.homeBtn.classList.remove('current');
+  refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
                     WATCHED
                 </button>
         
-                <button class="library-button inactive-btn">
+                <button class="library-button" data-action="show-queue">
                     QUEUE
                 </button>`
   refs.filmsContainer.innerHTML=`THERE'S NOTHING HERE`;
+  renderFilmsLibrary(localeStorageAPI.getValueWatched());
 })
 
-const spinnerP = new Spinner()
-spinnerP.render()
+  const refsShow = {
+    showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
+    showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
+  };
+  refsShow.showWatchedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueWatched());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showQueuedBtn.classList.remove('active-btn');
+  });
+  refsShow.showQueuedBtn.addEventListener('click', e => {
+    e.preventDefault();
+    clearFilmsContainer();
+    renderFilmsLibrary(localeStorageAPI.getValueQueue());
+    e.currentTarget.classList.add('active-btn');
+    refsShow.showWatchedBtn.classList.remove('active-btn');
+  });
+
+const spinnerP = new Spinner();
+// spinnerP.active()
+
+const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
+const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
+const localeStorageAPI = new LocaleStorageAPI();
+btnWatch.addEventListener('click', e => {
+  e.preventDefault();
+  localeStorageAPI.saveValueWatched(e.target.id);
+  checkButtonsStatusAdd();
+});
+btnQueue.addEventListener('click', e => {
+  e.preventDefault();
+  localeStorageAPI.saveValueQueue(e.target.id);
+  checkButtonsStatusQueue();
+});
