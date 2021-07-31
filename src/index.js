@@ -2,6 +2,7 @@ import './sass/main.scss';
 // import './js/modal.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import LocaleStorageAPI from './js/localStorageAPI';
+import './js/clock';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
