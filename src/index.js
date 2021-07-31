@@ -6,7 +6,7 @@ import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
-import './js/modal-footer';
+import './js/team-modal';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
