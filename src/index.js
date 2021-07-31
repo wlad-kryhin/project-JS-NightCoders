@@ -12,6 +12,7 @@ import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
+import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
@@ -93,9 +94,10 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
         
                 <button class="library-button" data-action="show-queue">
                     QUEUE
-                </button>`;
-  refs.filmsContainer.innerHTML = '';
+                </button>`
+  refs.filmsContainer.innerHTML=`THERE'S NOTHING HERE`;
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
+})
 
   const refsShow = {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
@@ -115,7 +117,6 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     e.currentTarget.classList.add('active-btn');
     refsShow.showWatchedBtn.classList.remove('active-btn');
   });
-});
 
 const spinnerP = new Spinner();
 // spinnerP.active()
