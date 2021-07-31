@@ -24,7 +24,7 @@ export default function filmsTemp(data) {
                   <p class="film-description">${original_title}
                   </p>
                   <p class="film-description  film-gengers">${makeStringOfGenres(genre_ids)},       
-          Other | ${release_date.slice(0, 4)} <span class="film-raiting">${vote_average}<span>
+          Other | ${release_date} <span class="film-raiting">${vote_average}<span>
                   </p>
                   </a>
                   </li>`;
