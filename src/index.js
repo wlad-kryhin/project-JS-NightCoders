@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import './js/menu-filter.js';
+// import './js/menu-filter.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import LocaleStorageAPI from './js/localStorageAPI';
 import './js/clock';
@@ -17,7 +17,7 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
-showMenuFilter();
+// showMenuFilter();
 import { currentThemeWebSite} from './js/toggle';
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
