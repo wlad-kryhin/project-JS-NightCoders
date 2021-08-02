@@ -1,7 +1,7 @@
 export default class LocaleStorageAPI {
   constructor() {
-    this.keyQueue = 'index';
-    this.keyWatch = 'id';
+    this.keyQueue = 'queue';
+    this.keyWatch = 'watch';
     this.value = '';
   }
 

@@ -1,5 +1,19 @@
 <header class="header header-background header-background-home" data-index="header">
+
   <div class="container">
+
+    <div class="clock">
+      <div class="hour">
+          <div class="hr" id="hr"></div>
+      </div>
+      <div class="min">
+          <div class="mn" id="mn"></div>
+      </div>
+      <div class="sec">
+          <div class="sc" id="sc"></div>
+      </div>
+  </div>
+  
   <nav class="nav" data-index="navigation">
     <a href="./index.html" class="nav-logo logo-style">
       <svg class="nav-logo-icon">
@@ -10,6 +24,7 @@
     <a class="nav-btn current" data-index="home" href="./index.html">HOME</a>
     <a class="nav-btn" data-index="mylibrary">MY LIBRARY</a>
   </nav>
+
 <div class="theme-switch">
   <svg class="theme-switch__icon" role="img" aria-label="Иконка солнца">
     <use href="./images/sprite.svg#sun"></use>
@@ -32,7 +47,7 @@
   <form class="search-film" action="" data-index="search-form">
     <span class="form-input-wrapper">
       <input class="search-film-input" data-index="serchInfo" type="text" id="searchQuery" name="query" autocomplete="off"
-        placeholder="Search films .." />
+        placeholder="Search films..." />
       <button class="submit-button" type="submit" id="submit">
         <svg class="search-icon">
           <use href="./images/sprite.svg#icon-search"></use>

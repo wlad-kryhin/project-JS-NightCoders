@@ -33,7 +33,45 @@
 }
 .logo-text {
   display: none;
+
+  &:hover{
+    -webkit-animation: rotate-scale-up 0.65s linear both;
+	        animation: rotate-scale-up 0.65s linear both;
+  }
 }
+// анимация логотипа
+
+@-webkit-keyframes rotate-scale-up {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateZ(180deg);
+            transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+}
+@keyframes rotate-scale-up {
+  0% {
+    -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+  }
+  50% {
+    -webkit-transform: scale(2) rotateZ(180deg);
+            transform: scale(2) rotateZ(180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotateZ(360deg);
+            transform: scale(1) rotateZ(360deg);
+  }
+}
+
+
+
 .search-film {
   display: flex;
   flex-direction: column;
@@ -46,6 +84,7 @@
   border: transparent;
   border-bottom: 1px solid $main-color-txt;
   font-size: 14px;
+  padding: 5px;
   line-height: 1.17;
   color: $main-color-txt;
   &::placeholder {
@@ -55,10 +94,6 @@
   &:focus {
     outline: none;
     border-bottom: 1px solid $active-color-txt;
-
-    &::placeholder {
-      color: $active-color-txt;
-    }
   }
 }
 .form-input-wrapper {
@@ -72,6 +107,12 @@
   position: absolute;
   right: 1px;
   top: 5px;
+  &:hover,
+  &:focus {
+    -webkit-transform: scale(1.7);
+    -ms-transform: scale(1.7);
+    transform: scale(1.7);
+  }
 }
 .search-icon {
   position: absolute;
@@ -90,7 +131,14 @@
     font-weight: 500;
     font-size: 30px;
     color: $main-color-txt;
-    margin-right: 303px;
+    margin-right: 263px;
+    background-color: transparent;
+    &:hover,
+    &:focus {
+      -webkit-transform: scale(1.15);
+      -ms-transform: scale(1.15);
+      transform: scale(1.15);
+    }
   }
   .nav-logo {
     margin-right: 0px;
@@ -108,6 +156,6 @@
 
 @media screen and (min-width: 1024px) {
   .logo-text {
-    margin-right: 565px;
+    margin-right: 515px;
   }
 }

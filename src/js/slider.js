@@ -1,6 +1,5 @@
 import Glide from '@glidejs/glide';
 import filmsCardSliderTpl from '../templates/card-films-slider.hbs';
-import trailer from './trailers';
 const sliderContainer = document.querySelector('.js-slider-container');
 const sliderWrapper = document.querySelector('.slider-wrapper');
 
@@ -10,7 +9,7 @@ const glide = new Glide('.glide', {
   type: 'slider',
   startAt: 0,
   perView: 8,
-  autoplay: 4000,
+  autoplay: 2000,
   hoverpause: true,
   bound: true,
 });

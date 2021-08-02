@@ -1,7 +1,10 @@
 const API_KEY = 'f67bdd430ce819844e2a075541409928';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-import movieCardTpl from '../templates/movieCard.hbs';
+import LocaleStorageAPI from './localStorageAPI';
+import checkButtonsStatusAdd from './components/buttonsWatchedStatus';
+import checkButtonsStatusQueue from './components/buttonsQueueStatus';
+const localeStorageAPI = new LocaleStorageAPI();
 
 const refs = {
   modalEl: document.querySelector('#modal__win'),
@@ -22,6 +25,8 @@ const refs = {
   movieAbout: document.querySelector('.movie__description'),
   modalBtnAddWatched: document.querySelector('[data-action="modalBtnAddWatched"]'),
   movieBtnQueue: document.querySelector('[data-action="movieBtnQueue"]'),
+
+  btnYoutube: document.querySelector('#youtube-js')
 };
 
 refs.closeBtnEl.addEventListener('click', onCloseModal);
@@ -36,7 +41,6 @@ document.addEventListener('click', onClickInNotModal);
 //   refs.modalContentEl.insertAdjacentHTML('beforeend', marcupMovieCard);
 // }
 
-
 /* -----------show---------------- */
 
 function showModal(event) {
@@ -44,7 +48,7 @@ function showModal(event) {
   /* Миша */
   renderModal(event.target.id);
   // renderMovieCard(event.target.id);
-setTimeout(()=>onOpenModal(),300)
+  setTimeout(() => onOpenModal(), 300);
 }
 
 /* ----------------open/close---------------- */
@@ -64,7 +68,6 @@ function onClickEscape(event) {
 }
 
 function onCloseModal() {
-  //  refs.modalContentEl.innerHTML = '';
   refs.modalEl.classList.add('is-hidden');
   refs.bodyEl.classList.remove('hidden');
 }
@@ -78,10 +81,10 @@ function onClickInNotModal(event) {
 /* Миша */
 
 async function renderModal(id) {
-  
   const resonse = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=6acc6746be8af475302214b8237b9c48&language=en-US`,
   );
+
   const movie = await resonse.json();
   refs.movieTitle.innerHTML = movie.original_title;
   refs.movieCard.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
@@ -93,6 +96,20 @@ async function renderModal(id) {
   refs.movieAbout.innerHTML = movie.overview;
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
+
+  checkButtonsStatusAdd();
+  checkButtonsStatusQueue();
+}
+
+function showTrailer(id) {
+  const url = `
+https://api.themoviedb.org/3/movie/${id}/videos?api_key=84867915c8b3aadc91d5efa8c22e1ab6&language=en-US`
+  return fetch(url).then(res => res.json()).then(data => {
+    const src = data.results[0].key
+    const trailerVideo = `<video src="https://www.youtube.com/embed/${src}" controls></video>`
+    return console.log(trailerVideo);
+  })
+ console.log(showModal(4040404)); 
 }
 
 export default showModal;
