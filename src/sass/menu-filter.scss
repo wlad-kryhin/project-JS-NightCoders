@@ -1,0 +1,327 @@
+.menu-filter {
+  position: relative;
+  opacity: 1; //0
+  width: 280px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 10px 0;
+
+  @media screen and (min-width: 768px) {
+    width: 548px;
+  }
+}
+
+.menu-filter__button {
+  // position: absolute;
+  // z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 77px;
+  height: 17px;
+  margin: 0 auto;
+  padding: 0;
+  border: transparent;
+  background-color: transparent;
+  border-bottom: 2px solid $active-color-txt;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.17;
+  color: $color-modal-bg;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    border: none;
+    color: $active-color-txt;
+  }
+}
+
+// после click
+
+// .menu-filter__wrapper-button {
+//   position: absolute;
+//   z-index: -1;
+// }
+
+// -------------------------filter__list
+
+.is-hidden {
+  display: none;
+  opacity: 0;
+}
+
+.filter-list {
+  position: absolute;
+  background-color: rgba(41, 40, 40, 0.5);
+  top: 3px;
+  left: 0;
+  width: 280px;
+  height: 96px;
+  opacity: 1;
+  border-radius: 2px;
+  padding: 5px;
+  z-index: 1000;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    top: 4px;
+    width: 548px;
+    height: 30px;
+    border-radius: 4px;
+  }
+}
+
+// после откр жанры или релиз
+//   top: 12px;
+// left: 0;
+// height: 30px;
+
+.filter-list__button-close {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url(../images/filter_close_icon.svg);
+  cursor: pointer;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
+.filter-item {
+  width: 130px;
+  height: 20px;
+  padding: 0 6px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.filter-item:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.filter-item__label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  color: $color-modal-bg;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.17;
+  color: $color-modal-bg;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: $active-color-txt;
+  }
+}
+
+.filter-list input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  vertical-align: top;
+  outline: none;
+  transition: background 0.3s ease;
+  background: url(../images//icon-check.svg) 0 0 no-repeat;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.filter-list input:checked {
+  background-image: url(../images/icon-check.svg);
+  opacity: 0;
+}
+
+.filter-item__list {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(255, 107, 8, 0.7);
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  top: 8px;
+  left: 125px;
+  width: 120px;
+  height: 81px;
+  padding: 5px;
+  border-radius: 2px;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 548px;
+    height: 30px;
+    top: 35px;
+    left: 0;
+    border-radius: 4px;
+    background-color: rgba(255, 107, 8, 0.7);
+  }
+}
+
+.filter-item__list-item {
+  width: 100px;
+  height: 20px;
+}
+
+.filter-item__list-item:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.films-genres__label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.17;
+  color: $txt-modal-color;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: $color-modal-bg;
+  }
+}
+
+.films-genres__label input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  vertical-align: top;
+  outline: none;
+  transition: background 0.3s ease;
+  background: url(../images//icon-checked.svg) 0 0 no-repeat;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.films-genres__label input:checked {
+  background-image: url(../images/icon-checked.svg);
+  opacity: 0;
+}
+
+.filter-item__list-button-close {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 2px;
+  right: 2px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url(../images/filter_close_icon_l.svg);
+  cursor: pointer;
+  outline: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+
+  @media screen and (min-width: 768px) {
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.release-date__label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.17;
+  color: $txt-modal-color;
+  margin-right: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: $color-modal-bg;
+  }
+}
+
+.release-date__label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  font-family: $font-family;
+  font-size: 0.875rem;
+  line-height: 1.17;
+  color: $txt-modal-color;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: $color-modal-bg;
+  }
+}
+
+.release-date__label input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 0 0 10px;
+  padding: 0;
+  vertical-align: top;
+  outline: none;
+  transition: background 0.3s ease;
+  background: url(../images//icon-checked.svg) 0 0 no-repeat;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.release-date__label input:checked {
+  background-image: url(../images/icon-checked.svg);
+  opacity: 0;
+}
