@@ -1,5 +1,5 @@
 import './sass/main.scss';
-// import './js/modal.js';
+import './js/menu-filter.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import LocaleStorageAPI from './js/localStorageAPI';
 import './js/btn-scroll';
@@ -13,7 +13,7 @@ import LoadMoreBtn from './js/components/load-more-btn';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
-
+showMenuFilter();
 const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
@@ -104,4 +104,3 @@ btnWatch.addEventListener('click', e => {
   e.preventDefault();
   localeStorageAPI.saveValueWatched(e.target.id);
 });
-
