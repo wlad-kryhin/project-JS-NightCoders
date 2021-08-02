@@ -2,9 +2,11 @@ const API_KEY = 'f67bdd430ce819844e2a075541409928';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 import LocaleStorageAPI from './localStorageAPI';
+import TrailerApp from './components/trailer-modal';
 import checkButtonsStatusAdd from './components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './components/buttonsQueueStatus';
 const localeStorageAPI = new LocaleStorageAPI();
+const trailerApp = new TrailerApp();
 
 const refs = {
   modalEl: document.querySelector('#modal__win'),
@@ -26,7 +28,10 @@ const refs = {
   modalBtnAddWatched: document.querySelector('[data-action="modalBtnAddWatched"]'),
   movieBtnQueue: document.querySelector('[data-action="movieBtnQueue"]'),
 
-  btnYoutube: document.querySelector('#youtube-js')
+  btnYoutube: document.querySelector('[data-action="youtube-js"]'),
+  trailerModal: document.querySelector('[data-action="js-trailer"]'),
+  trailerModalContainer: document.querySelector('[data-action="js-trailer-container"]'),
+  trailerModalTag: document.querySelector('.video-trailer'),
 };
 
 refs.closeBtnEl.addEventListener('click', onCloseModal);
@@ -70,6 +75,7 @@ function onClickEscape(event) {
 function onCloseModal() {
   refs.modalEl.classList.add('is-hidden');
   refs.bodyEl.classList.remove('hidden');
+  refs.btnYoutube.removeEventListener('click', openTrailerBtn);
 }
 
 function onClickInNotModal(event) {
@@ -96,6 +102,9 @@ async function renderModal(id) {
   refs.movieAbout.innerHTML = movie.overview;
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
+  refs.btnYoutube.id = movie.id;
+
+  refs.btnYoutube.addEventListener('click', openTrailerBtn);
 
   checkButtonsStatusAdd();
   checkButtonsStatusQueue();
@@ -103,13 +112,20 @@ async function renderModal(id) {
 
 function showTrailer(id) {
   const url = `
-https://api.themoviedb.org/3/movie/${id}/videos?api_key=84867915c8b3aadc91d5efa8c22e1ab6&language=en-US`
-  return fetch(url).then(res => res.json()).then(data => {
-    const src = data.results[0].key
-    const trailerVideo = `<video src="https://www.youtube.com/embed/${src}" controls></video>`
-    return console.log(trailerVideo);
-  })
- console.log(showModal(4040404)); 
+https://api.themoviedb.org/3/movie/${id}/videos?api_key=84867915c8b3aadc91d5efa8c22e1ab6&language=en-US`;
+  return fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      refs.trailerModalTag.src = `https://www.youtube.com/embed/${data.results[0].key}`;
+      refs.trailerModal.classList.remove('is-hidden');
+      trailerApp.setCloser();
+    });
+}
+
+function openTrailerBtn(e) {
+  e.preventDefault();
+  onCloseModal();
+  showTrailer(e.currentTarget.id);
 }
 
 export default showModal;
