@@ -13,7 +13,19 @@
       
       event.preventDefault();
     }
+
+    window.addEventListener('keydown', closeFooterModalEscape);
+
+    function closeFooterModalEscape(event) {
+        if (event.code === 'Escape') {
+            toggleModal(event);
+            window.removeEventListener('keydown', closeModalFooter);
+        }
+   }
+  
 })();
+
+// Еще одна версия modal footer
 
 // import * as basicLightbox from 'basiclightbox';
 // import mikhailUrl from '../images/team1.jpg';
@@ -95,5 +107,6 @@
 //         }
 //     }
 // }
+
   
 
