@@ -13,6 +13,12 @@
   &:not(:last-child) {
     margin-right: 39px;
   }
+  &:hover,
+  &:focus {
+    -webkit-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
+  }
 }
 .current {
   &::after {
@@ -22,5 +28,11 @@
     width: 100%;
     height: 3px;
     background-color: $color-btn-bg;
+  }
+  &:hover,
+  &:focus {
+    -webkit-transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    transform: scale(1.4);
   }
 }
