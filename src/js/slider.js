@@ -25,7 +25,7 @@ function renderTrendy() {
     })
     .then(renderSliderFilms)
     .catch(err => {
-      sliderContainer.innerHTML = `${errorUrl}`;
+      // sliderContainer.innerHTML = `${errorUrl}`;
     });
 }
 

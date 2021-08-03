@@ -6,6 +6,7 @@ import './js/clock';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
+import './js/components/trailer-modal';
 import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
@@ -17,6 +18,8 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
+import Swal from 'sweetalert2'
+// showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
@@ -42,18 +45,37 @@ function renderTrending() {
 }
 renderTrending();
 
+// function onSearch(e) {
+//   e.preventDefault();
+//   filmsApiService.query = e.currentTarget.query.value;
+//   if (filmsApiService.query === '') {
+//     return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
+//   }
+//   filmsApiService.resetPage();
+//   loadMoreBtn.show();
+//   loadMoreBtn.disable();
+//   clearFilmsContainer();
+//   onLoadMore();
+//   showModal(); // fn для модалки
+// }
+
 function onSearch(e) {
   e.preventDefault();
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '') {
-    return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
+    return Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Please, enter something!',
+  footer: '<a href="">Why do I have this issue?</a>'
+     }); // тут нужен будет плагин нотификации
   }
   filmsApiService.resetPage();
   loadMoreBtn.show();
   loadMoreBtn.disable();
   clearFilmsContainer();
   onLoadMore();
-  showModal(); // fn для модалки
+ //   showModal(); // fn для модалки
 }
 
 // function onLoadMore() {
@@ -64,7 +86,17 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable();
   setTimeout(() => {
-    filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+    filmsApiService.fetchFilms().then((films) => {
+  if (films.length === 0) {
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  footer: '<a href="">Why do I have this issue?</a>'
+     });
+  }
+  appendFilmsMarkup(films)
+}).then(loadMoreBtn.enable());
   }, 1500);
 }
 
@@ -89,6 +121,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
   e.preventDefault();
   myLibraryPageChange();
   currentThemeWebSite();
+  refs.searchForm.classList.add('direction-row');
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
@@ -104,7 +137,6 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
     showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
   };
-  console.log(refsShow.showWatchedBtn);
   refsShow.showWatchedBtn.addEventListener('click', e => {
     e.preventDefault();
     clearFilmsContainer();

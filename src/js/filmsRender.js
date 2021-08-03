@@ -18,13 +18,19 @@ export default function filmsTemp(data) {
   let result = data
     .map(movie => {
       const { poster_path, original_title, release_date, genre_ids, vote_average, id } = movie;
+      let stringed_date = '';
+      if (release_date === undefined) {
+        stringed_date = '';
+      } else if (release_date) {
+        stringed_date = release_date.slice(0, 4);
+      }
       const movieItem = `<li class="film-item">
                   <a href="" class="film-link">
                   <img src="https://image.tmdb.org/t/p/w342/${poster_path}" alt="{{original_title}}" class="film-img" id="${id}">
                   <p class="film-description">${original_title}
                   </p>
                   <p class="film-description  film-gengers">${makeStringOfGenres(genre_ids)},       
-          Other | ${release_date} <span class="film-raiting">${vote_average}<span>
+          Other | ${stringed_date} <span class="film-raiting">${vote_average}<span>
                   </p>
                   </a>
                   </li>`;

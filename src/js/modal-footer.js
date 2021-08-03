@@ -1,28 +1,27 @@
 (() => {
-    const refs = {
-      openModalFooter: document.querySelector('[data-modal-footer-open]'),
-      closeModalFooter: document.querySelector('[data-modal-footer-close]'),
-      footerModal: document.querySelector('[data-modal-footer]'),
-    };
-  
-    refs.openModalFooter.addEventListener('click', toggleModal);
-    refs.closeModalFooter.addEventListener('click', toggleModal);
-  
-    function toggleModal(event) {
-      refs.footerModal.classList.toggle('is-hidden');
-      
-      event.preventDefault();
+  const refs = {
+    openModalFooter: document.querySelector('[data-modal-footer-open]'),
+    closeModalFooter: document.querySelector('[data-modal-footer-close]'),
+    footerModal: document.querySelector('[data-modal-footer]'),
+  };
+
+  refs.openModalFooter.addEventListener('click', toggleModal);
+  refs.closeModalFooter.addEventListener('click', toggleModal);
+
+  function toggleModal(event) {
+    refs.footerModal.classList.toggle('is-hidden');
+
+    event.preventDefault();
+  }
+
+  window.addEventListener('keydown', closeFooterModalEscape);
+
+  function closeFooterModalEscape(event) {
+    if (event.code === 'Escape') {
+      toggleModal(event);
+      window.removeEventListener('keydown', closeModalFooter);
     }
-
-    window.addEventListener('keydown', closeFooterModalEscape);
-
-    function closeFooterModalEscape(event) {
-        if (event.code === 'Escape') {
-            toggleModal(event);
-            window.removeEventListener('keydown', closeModalFooter);
-        }
-   }
-  
+  }
 })();
 
 // Еще одна версия modal footer
@@ -107,6 +106,3 @@
 //         }
 //     }
 // }
-
-  
-
