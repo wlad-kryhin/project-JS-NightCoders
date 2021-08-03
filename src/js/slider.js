@@ -3,7 +3,6 @@ import filmsCardSliderTpl from '../templates/card-films-slider.hbs';
 const sliderContainer = document.querySelector('.js-slider-container');
 // const sliderWrapper = document.querySelector('.slider-wrapper');
 
-renderTrendy();
 
 const glide = new Glide('.glide', {
   type: 'slider',
@@ -16,7 +15,7 @@ const glide = new Glide('.glide', {
 
 glide.mount();
 
-function renderTrendy() {
+export default function renderTrendy() {
   const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=92ffb34e08e714eb390805a25b0a06d3`;
   return fetch(url)
     .then(response => response.json())
