@@ -54,15 +54,25 @@ document.addEventListener('click', onClickInNotModal);
 function showModal(event) {
   event.preventDefault();
   spinner.active()
-  /* Миша */
-  renderModal(event.target.id);
-  
-  // renderMovieCard(event.target.id);
-  setTimeout(() => {
+  if (event.target.nodeName === 'IMG') {
+    renderModal(event.target.id);
+    setTimeout(() => {
     onOpenModal()
     spinner.hidden()
-  }, 300);
-}
+    }, 300);
+    
+  }
+  spinner.hidden()
+  }
+  // /* Миша */
+  // renderModal(event.target.id);
+  
+  // // renderMovieCard(event.target.id);
+  // setTimeout(() => {
+  //   onOpenModal()
+  //   spinner.hidden()
+  // }, 300);
+
 
 /* ----------------open/close---------------- */
 
