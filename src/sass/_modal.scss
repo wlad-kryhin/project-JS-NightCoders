@@ -1,5 +1,8 @@
 /* MODAL */
-
+.is-hidden {
+  transform: translateY(-10%);
+  display: none;
+}
 .modal__backdrop {
   position: fixed;
   top: 0;
@@ -10,10 +13,11 @@
   padding-right: 15px;
   background: rgba(0, 0, 0, 0.2);
   opacity: 1;
-  transition: opacity 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
   visibility: visible;
   overflow-y: scroll;
   z-index: 100;
+  will-change: opacity;
 }
 
 .modal__backdrop.is-hidden {
@@ -38,8 +42,9 @@
   border-radius: 12px;
   animation: modalAnimate 500 cubic-bezier(0.4, 0, 0.2, 1);
   transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 100ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 99;
+  will-change: opacity;
 
   @media screen and (min-width: 768px) {
     top: 230px;
