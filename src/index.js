@@ -18,7 +18,7 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 // showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {
@@ -27,6 +27,7 @@ const refs = {
   filmsContainer: document.querySelector('.film-list'),
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
+const spinner = new Spinner();
 const loadMoreBtn = new LoadMoreBtn({
   selector: '[data-action="load-more"]',
   hidden: true,
@@ -43,7 +44,13 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 function renderTrending() {
   filmsApiService.fetchTrendingFilms().then(appendFilmsMarkup);
 }
-renderTrending();
+spinner.active()
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    renderTrending()
+    spinner.hidden()
+  },500)
+})
 
 // function onSearch(e) {
 //   e.preventDefault();
@@ -61,20 +68,21 @@ renderTrending();
 
 function onSearch(e) {
   e.preventDefault();
+  spinner.active()
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '') {
+     loadMoreBtn.disable();
     return Swal.fire({
   icon: 'error',
   title: 'Oops...',
   text: 'Please, enter something!',
   footer: '<a href="">Why do I have this issue?</a>'
-     }); // тут нужен будет плагин нотификации
+     });
   }
   filmsApiService.resetPage();
-  loadMoreBtn.show();
-  loadMoreBtn.disable();
   clearFilmsContainer();
   onLoadMore();
+  loadMoreBtn.show();
  //   showModal(); // fn для модалки
 }
 
@@ -95,9 +103,14 @@ function onLoadMore() {
   footer: '<a href="">Why do I have this issue?</a>'
      });
   }
-  appendFilmsMarkup(films)
-}).then(loadMoreBtn.enable());
-  }, 1500);
+      appendFilmsMarkup(films)
+      spinner.hidden()
+      refs.loadMoreBtn.style.display ='flex'
+      loadMoreBtn.enable()
+      if (films.length === 0) {
+        loadMoreBtn.hide()
+      }
+})}, 1500);
 }
 
 function appendFilmsMarkup(films) {
@@ -118,7 +131,9 @@ function myLibraryPageChange() {
   refsHeader.header.classList.add('header-background-myLibrary');
 }
 refsHeader.myLibraryBtn.addEventListener('click', e => {
+spinner.active()
   e.preventDefault();
+  refs.loadMoreBtn.style.display = 'none';
   myLibraryPageChange();
   currentThemeWebSite();
   refs.searchForm.classList.add('direction-row');
@@ -151,10 +166,8 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     e.currentTarget.classList.add('active-btn');
     refsShow.showWatchedBtn.classList.remove('active-btn');
   });
+  spinner.hidden()
 });
-
-const spinnerP = new Spinner();
-// spinnerP.active()
 
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
 const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
