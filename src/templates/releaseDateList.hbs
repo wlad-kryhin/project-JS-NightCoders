@@ -1,0 +1,11 @@
+{{#each this}}
+  <li class='filter-item__list-item'>
+    <label class='release-date__label' for='release-date__input {{this.date}}'>
+      <input
+        class='input input-release-date'
+        type='checkbox'
+        checked
+      />{{this.date}}
+    </label>
+  </li>
+{{/each}}

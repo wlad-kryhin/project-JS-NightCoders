@@ -1,5 +1,5 @@
 import './sass/main.scss';
-// import './js/menu-filter.js';
+import './js/menu-filter.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import LocaleStorageAPI from './js/localStorageAPI';
 import './js/clock';
@@ -17,8 +17,7 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
-// showMenuFilter();
-import { currentThemeWebSite} from './js/toggle';
+import { currentThemeWebSite } from './js/toggle';
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
   searchForm: document.querySelector('[data-index="search-form"]'),
@@ -89,7 +88,7 @@ function myLibraryPageChange() {
 refsHeader.myLibraryBtn.addEventListener('click', e => {
   e.preventDefault();
   myLibraryPageChange();
-  currentThemeWebSite()
+  currentThemeWebSite();
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
@@ -99,7 +98,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = '';
-  refs.slider.style.display = 'none'
+  refs.slider.style.display = 'none';
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
   const refsShow = {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
