@@ -13,27 +13,45 @@
   &:not(:last-child) {
     margin-right: 39px;
   }
+
   &:hover,
   &:focus {
+    transition: color 0.2s linear;
     -webkit-transform: scale(1.4);
     -ms-transform: scale(1.4);
     transform: scale(1.4);
   }
-}
-.current {
+
+  &.current{
+    color: $active-color-txt;
+  }
   &::after {
-    position: absolute;
     content: '';
     display: block;
+    background-color: $active-color-txt;
+    width: 0%;
+    height: 1px;
+    bottom: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.2s linear;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:hover::after,
+  &:active::after {
+    opacity: 1;
+    visibility: visible;
     width: 100%;
-    height: 3px;
-    background-color: $color-btn-bg;
   }
-  &:hover,
-  &:focus {
-    -webkit-transform: scale(1.4);
-    -ms-transform: scale(1.4);
-    transform: scale(1.4);
-  }
+
 }
+
+
+
+
+
+
 
