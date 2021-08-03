@@ -24,6 +24,9 @@ export default class LocaleStorageAPI {
     let keyWatched = this.getValueWatched();
     let pushKey = false;
     const checkedWatchId = keyWatched.indexOf(id);
+    if (id === undefined) {
+      return;
+    }
 
     if (checkedWatchId === -1) {
       keyWatched.push(id);
@@ -39,6 +42,9 @@ export default class LocaleStorageAPI {
     let keyQueue = this.getValueQueue();
     let pushKey = false;
     const checkedQueueIndex = keyQueue.indexOf(index);
+    if (index === undefined) {
+      return;
+    }
 
     if (checkedQueueIndex === -1) {
       keyQueue.push(index);

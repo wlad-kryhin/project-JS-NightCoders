@@ -93,12 +93,27 @@ async function renderModal(id) {
 
   const movie = await resonse.json();
   refs.movieTitle.innerHTML = movie.original_title;
-  refs.movieCard.src = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+
+  let poster = '';
+  if (movie.poster_path === null) {
+    poster =
+      'https://png.pngtree.com/thumb_back/fw800/back_our/20190619/ourmid/pngtree-romantic-blue-film-phase-movie-poster-background-image_136505.jpg';
+  } else {
+    poster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+  }
+  refs.movieCard.src = `${poster}`;
   refs.movieVoteAvarage.innerHTML = movie.vote_average;
   refs.movieVoteCount.innerHTML = movie.vote_count;
   refs.moviePopularity.innerHTML = movie.popularity;
   refs.movieListTitle.innerHTML = movie.original_title;
-  refs.movieGenre.innerHTML = movie.genres[0].name;
+
+  let genres = '';
+  if (movie.genres.length === 0) {
+    genres = '...';
+  } else {
+    genres = movie.genres[0].name;
+  }
+  refs.movieGenre.innerHTML = genres;
   refs.movieAbout.innerHTML = movie.overview;
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
