@@ -57,7 +57,7 @@ function markupLibraryHtml(movie) {
     genre2 = genres[1].name;
   }
 
-  const movieItem = `<li class="film-item">
+  const movieItem = `<li class="film-item" id=${id}>
                   <a href="" class="film-link">
                   <img src="${poster}" alt="{{original_title}}" class="film-img" id="${id}">
                   <p class="film-description">${original_title}
