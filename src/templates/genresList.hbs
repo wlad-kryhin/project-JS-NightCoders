@@ -1,0 +1,6 @@
+{{#each genres as |genre genreName|}}
+  <li class='filter-item__list-item'>
+    <label class='films-genres__label' for='input-genres {{genre.name}}'>
+      <input class='input-genres' type='checkbox' checked />{{genre.name}}</label>
+  </li>
+{{/each}}

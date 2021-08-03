@@ -1,5 +1,5 @@
 import './sass/main.scss';
-// import './js/menu-filter.js';
+import './js/menu-filter.js';
 import Spinner from './js/spinner'; // import Spinner(active , hidden)
 import LocaleStorageAPI from './js/localStorageAPI';
 import './js/clock';
@@ -19,7 +19,6 @@ import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 import Swal from 'sweetalert2'
-
 // showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {

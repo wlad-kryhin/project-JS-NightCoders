@@ -1,6 +1,7 @@
 .menu-filter {
   position: relative;
-  opacity: 1; //0
+  opacity: 1;
+  visibility: visible;
   width: 280px;
   height: 100px;
   margin: 0 auto;
@@ -12,8 +13,6 @@
 }
 
 .menu-filter__button {
-  // position: absolute;
-  // z-index: -1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +22,6 @@
   padding: 0;
   border: transparent;
   background-color: transparent;
-  border-bottom: 2px solid $active-color-txt;
   font-family: $font-family;
   font-size: 0.875rem;
   line-height: 1.17;
@@ -33,23 +31,35 @@
 
   &:hover,
   &:focus {
-    border: none;
     color: $active-color-txt;
+    transition: color 0.2s linear;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+    width: 80px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    background-color: $active-color-txt;
+    width: 0%;
+    height: 1px;
+    bottom: 70px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.2s linear;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
-// после click
-
-// .menu-filter__wrapper-button {
-//   position: absolute;
-//   z-index: -1;
-// }
-
-// -------------------------filter__list
-
 .is-hidden {
-  display: none;
   opacity: 0;
+  visibility: hidden;
 }
 
 .filter-list {
@@ -72,11 +82,6 @@
     border-radius: 4px;
   }
 }
-
-// после откр жанры или релиз
-//   top: 12px;
-// left: 0;
-// height: 30px;
 
 .filter-list__button-close {
   position: absolute;
@@ -135,6 +140,7 @@
   &:hover,
   &:focus {
     color: $active-color-txt;
+    transition: color 0.2s linear;
   }
 }
 
@@ -151,6 +157,7 @@
   transition: background 0.3s ease;
   background: url(../images//icon-check.svg) 0 0 no-repeat;
   opacity: 1;
+  visibility: visible;
   cursor: pointer;
 }
 
@@ -181,17 +188,26 @@
 
   @media screen and (min-width: 768px) {
     width: 548px;
-    height: 30px;
+    height: 100px;
     top: 35px;
     left: 0;
     border-radius: 4px;
-    background-color: rgba(255, 107, 8, 0.7);
+    background-color: rgba(255, 107, 8);
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 130px;
   }
 }
 
 .filter-item__list-item {
   width: 100px;
   height: 20px;
+
+  @media screen and (min-width: 768px) {
+    height: 30px;
+    margin-right: 30px;
+  }
 }
 
 .filter-item__list-item:not(:last-child) {
@@ -213,6 +229,11 @@
   &:hover,
   &:focus {
     color: $color-modal-bg;
+    transition: color 0.2s linear;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 120px;
   }
 }
 
@@ -229,6 +250,7 @@
   transition: background 0.3s ease;
   background: url(../images//icon-checked.svg) 0 0 no-repeat;
   opacity: 1;
+  visibility: visible;
   cursor: pointer;
 }
 
@@ -284,6 +306,7 @@
   &:hover,
   &:focus {
     color: $color-modal-bg;
+    transition: color 0.2s linear;
   }
 }
 
@@ -302,6 +325,7 @@
   &:hover,
   &:focus {
     color: $color-modal-bg;
+    transition: color 0.2s linear;
   }
 }
 
@@ -318,6 +342,7 @@
   transition: background 0.3s ease;
   background: url(../images//icon-checked.svg) 0 0 no-repeat;
   opacity: 1;
+  visibility: visible;
   cursor: pointer;
 }
 
