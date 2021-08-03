@@ -6,6 +6,7 @@ import './js/clock';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
+import './js/components/trailer-modal';
 import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
 import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
@@ -18,7 +19,7 @@ import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 // showMenuFilter();
-import { currentThemeWebSite} from './js/toggle';
+import { currentThemeWebSite } from './js/toggle';
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
   searchForm: document.querySelector('[data-index="search-form"]'),
@@ -89,7 +90,8 @@ function myLibraryPageChange() {
 refsHeader.myLibraryBtn.addEventListener('click', e => {
   e.preventDefault();
   myLibraryPageChange();
-  currentThemeWebSite()
+  currentThemeWebSite();
+  refs.searchForm.classList.add('direction-row');
   refsHeader.myLibraryBtn.classList.add('current');
   refsHeader.homeBtn.classList.remove('current');
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
@@ -99,13 +101,12 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
                     QUEUE
                 </button>`;
   refs.filmsContainer.innerHTML = '';
-  refs.slider.style.display = 'none'
+  refs.slider.style.display = 'none';
   renderFilmsLibrary(localeStorageAPI.getValueWatched());
   const refsShow = {
     showWatchedBtn: document.querySelector('[data-action="show-watched"]'),
     showQueuedBtn: document.querySelector('[data-action="show-queue"]'),
   };
-  console.log(refsShow.showWatchedBtn);
   refsShow.showWatchedBtn.addEventListener('click', e => {
     e.preventDefault();
     clearFilmsContainer();

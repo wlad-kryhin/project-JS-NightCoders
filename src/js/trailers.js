@@ -4,11 +4,11 @@ function createTrailerLink(elementRef) {
   const trailerBtn = elementRef;
   // console.log(trailerBtn.length==undefined);
 
-  if (trailerBtn.length==undefined) {
+  if (trailerBtn.length == undefined) {
     trailerBtn.addEventListener('click', e => {
       drawModalForTrailler(e.target.dataset.id);
-    })
-   return;
+    });
+    return;
   }
 
   trailerBtn.forEach(el =>
@@ -51,12 +51,9 @@ function createTrailerLink(elementRef) {
         ></button>
     `,
     );
-    const modalCloseBtn = document.querySelector(
-      '[data-action="close-lightbox"]',
-    );
+    const modalCloseBtn = document.querySelector('[data-action="close-lightbox"]');
     modalCloseBtn.addEventListener('click', () => instance.close());
   }
 }
-
 
 export default { createTrailerLink };
