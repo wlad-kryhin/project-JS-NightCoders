@@ -18,6 +18,8 @@ import './js/library-background';
 import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
+import Swal from 'sweetalert2'
+
 // showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {
@@ -44,18 +46,37 @@ function renderTrending() {
 }
 renderTrending();
 
+// function onSearch(e) {
+//   e.preventDefault();
+//   filmsApiService.query = e.currentTarget.query.value;
+//   if (filmsApiService.query === '') {
+//     return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
+//   }
+//   filmsApiService.resetPage();
+//   loadMoreBtn.show();
+//   loadMoreBtn.disable();
+//   clearFilmsContainer();
+//   onLoadMore();
+//   showModal(); // fn для модалки
+// }
+
 function onSearch(e) {
   e.preventDefault();
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '') {
-    return alert('Search result not successful. Enter the correct movie name and '); // тут нужен будет плагин нотификации
+    return Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Please, enter something!',
+  footer: '<a href="">Why do I have this issue?</a>'
+     }); // тут нужен будет плагин нотификации
   }
   filmsApiService.resetPage();
   loadMoreBtn.show();
   loadMoreBtn.disable();
   clearFilmsContainer();
   onLoadMore();
-  showModal(); // fn для модалки
+ //   showModal(); // fn для модалки
 }
 
 // function onLoadMore() {
@@ -66,7 +87,17 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable();
   setTimeout(() => {
-    filmsApiService.fetchFilms().then(appendFilmsMarkup).then(loadMoreBtn.enable());
+    filmsApiService.fetchFilms().then((films) => {
+  if (films.length === 0) {
+  Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Something went wrong!',
+  footer: '<a href="">Why do I have this issue?</a>'
+     });
+  }
+  appendFilmsMarkup(films)
+}).then(loadMoreBtn.enable());
   }, 1500);
 }
 
