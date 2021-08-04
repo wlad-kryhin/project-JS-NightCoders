@@ -27,6 +27,7 @@ const refs = {
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
   filmCard: document.querySelector('.film-item'),
+  inputForm: document.querySelector('[data-index="serchInfo"]'),
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
 const spinner = new Spinner();
@@ -72,21 +73,23 @@ document.addEventListener('DOMContentLoaded', () => {
 function onSearch(e) {
   e.preventDefault();
   spinner.active();
+  loadMoreBtn.hide()
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '') {
-    loadMoreBtn.disable();
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Please, enter something!',
       footer: '<a href="">Why do I have this issue?</a>',
     });
-    // spinner.hidden()
+    renderTrending()
+    spinner.hidden()
+    loadMoreBtn.disable();
   }
   filmsApiService.resetPage();
   clearFilmsContainer();
-  onLoadMore();
   loadMoreBtn.show();
+  onLoadMore();
 }
 
 // function onLoadMore() {
@@ -95,26 +98,33 @@ function onSearch(e) {
 // }
 
 function onLoadMore() {
-  loadMoreBtn.disable();
+  loadMoreBtn.disable()
+  spinner.active()
+  if (filmsApiService.query === '') {
+    loadMoreBtn.disable();
+    renderTrending()
+    spinner.hidden()
+  }
+
   setTimeout(() => {
     filmsApiService.fetchFilms().then(films => {
       if (films.length === 0) {
-        Swal.fire({
+      Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
           footer: '<a href="">Why do I have this issue?</a>',
-        });
+      });
+        renderTrending()
+        filmsApiService.query = ''
+         spinner.hidden();
       }
       appendFilmsMarkup(films);
       spinner.hidden();
-      refs.loadMoreBtn.style.display = 'flex';
-      loadMoreBtn.enable();
-      if (films.length === 0) {
-        loadMoreBtn.hide();
-      }
+  
     });
   }, 1502);
+   loadMoreBtn.enable()
 }
 
 function appendFilmsMarkup(films) {

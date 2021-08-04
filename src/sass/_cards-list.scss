@@ -82,21 +82,17 @@
 }
 
 .section-hero {
+  max-width: 100%;
+  min-height: calc(100vh - 250px);
   padding-top: 20px;
   padding-bottom: 40px;
+
   @media screen and (min-width: 768px) {
     padding-bottom: 60px;
     padding-top: 60px;
   }
-}
 
-.section-hero {
-  max-width: 100%;
-  min-height: 500px;
-  padding-top: 20px;
-  padding-bottom: 40px;
-  @media screen and (min-width: 768px) {
-    padding-bottom: 60px;
-    padding-top: 60px;
+  @media screen and (max-width: 768px) {
+    min-height: calc(100vh - 200px);
   }
 }
