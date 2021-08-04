@@ -8,7 +8,7 @@ const localeStorageAPI = new LocaleStorageAPI();
 
 export default function checkButtonsStatusAdd() {
   if (localeStorageAPI.getValueWatched().includes(refs.modalBtnAddWatched.id)) {
-    refs.modalBtnAddWatched.textContent = 'Added';
+    refs.modalBtnAddWatched.textContent = 'Remove from Watched';
     refs.modalBtnAddWatched.classList.remove('transparent-btn');
     refs.modalBtnAddWatched.classList.add('active-btn');
   } else if (!localeStorageAPI.getValueWatched().includes(refs.modalBtnAddWatched.id)) {
