@@ -99,6 +99,7 @@ function onSearch(e) {
 
 function onLoadMore() {
   loadMoreBtn.disable()
+  spinner.active()
   if (filmsApiService.query === '') {
     loadMoreBtn.disable();
     renderTrending()
