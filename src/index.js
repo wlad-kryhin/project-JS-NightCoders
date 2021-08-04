@@ -115,7 +115,7 @@ function onLoadMore() {
         loadMoreBtn.hide();
       }
     });
-  }, 1501);
+  }, 1502);
 }
 
 function appendFilmsMarkup(films) {
