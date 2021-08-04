@@ -137,7 +137,7 @@ async function renderModal(id) {
   refs.movieBtnQueue.id = movie.id;
   refs.btnYoutube.id = movie.id;
   
-  refs.sliderBtn.addEventListener('click', openTrailerBtn)
+  refs.btnYoutube.addEventListener('click', openTrailerBtn)
 
   checkButtonsStatusAdd();
   checkButtonsStatusQueue();
