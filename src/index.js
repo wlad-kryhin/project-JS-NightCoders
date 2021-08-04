@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTrending()
     renderTrendy()
     spinner.hidden()
+    loadMoreBtn.show()
   },500)
 })
 
@@ -82,9 +83,11 @@ function onSearch(e) {
     });
     spinner.hidden()
   }
+  
   filmsApiService.resetPage();
   clearFilmsContainer();
   onLoadMore();
+  loadMoreBtn.show()
  //   showModal(); // fn для модалки
 }
 
