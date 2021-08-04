@@ -76,15 +76,14 @@ function onSearch(e) {
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === ''){
     loadMoreBtn.disable();
-    return Swal.fire({
+    Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Please, enter something!',
       footer: '<a href="">Why do I have this issue?</a>',
-    }):
-    spinner.hidden()
+    });
+    // spinner.hidden()
   }
-  
   filmsApiService.resetPage();
   clearFilmsContainer();
   onLoadMore();
