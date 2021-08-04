@@ -103,6 +103,7 @@ function onLoadMore() {
   if (filmsApiService.query === '') {
     loadMoreBtn.disable();
     renderTrending()
+    spinner.hidden()
   }
 
   setTimeout(() => {
@@ -115,7 +116,8 @@ function onLoadMore() {
           footer: '<a href="">Why do I have this issue?</a>',
       });
         renderTrending()
-        filmsApiService.query=''
+        filmsApiService.query = ''
+         spinner.hidden();
       }
       appendFilmsMarkup(films);
       spinner.hidden();
