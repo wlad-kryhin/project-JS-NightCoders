@@ -3,6 +3,8 @@
     openModalFooter: document.querySelector('[data-modal-footer-open]'),
     closeModalFooter: document.querySelector('[data-modal-footer-close]'),
     footerModal: document.querySelector('[data-modal-footer]'),
+    modalFooterElement: document.querySelector('#modal-escape'),
+    bodyElement: document.querySelector('body'),
   };
 
   refs.openModalFooter.addEventListener('click', toggleModal);
@@ -18,10 +20,17 @@
 
   function closeFooterModalEscape(event) {
     if (event.code === 'Escape') {
-      toggleModal(event);
-      window.removeEventListener('keydown', closeModalFooter);
+      refs.modalFooterElement.classList.add('is-hidden');
+      window.removeEventListener('keydown', closeFooterModalEscape);
+      closeFooterModal();
     }
   }
+
+  function closeFooterModal() {
+  refs.modalFooterElement.classList.add('is-hidden');
+  refs.bodyElement.classList.remove('hidden');
+}
+
 })();
 
 // Еще одна версия modal footer
