@@ -77,7 +77,7 @@ function onSearch(e) {
   spinner.active();
   loadMoreBtn.hide();
   filmsApiService.query = e.currentTarget.query.value;
-  if (filmsApiService.query === '') {
+  if (filmsApiService.query === '' || filmsApiService.query === ' ') {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -90,7 +90,7 @@ function onSearch(e) {
   }
   filmsApiService.resetPage();
   clearFilmsContainer();
-  loadMoreBtn.show();
+ loadMoreBtn.disable()
   onLoadMore();
 }
 
@@ -100,32 +100,37 @@ function onSearch(e) {
 // }
 
 function onLoadMore() {
+
   loadMoreBtn.disable();
   spinner.active();
-  if (filmsApiService.query === '') {
+  if (filmsApiService.query === '' || filmsApiService.query.trim() === '') {
     loadMoreBtn.disable();
     renderTrending();
     spinner.hidden();
   }
-
-  setTimeout(() => {
-    filmsApiService.fetchFilms().then(films => {
-      if (films.length === 0) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Why do I have this issue?</a>',
-        });
-        renderTrending();
-        filmsApiService.query = '';
+  else {
+    setTimeout(() => {
+      filmsApiService.fetchFilms().then(films => {
+        console.log(films);
+        if (films.length === 0) {
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
+      renderTrending()
+      filmsApiService.query = ''
+      spinner.hidden()
+        }
+        appendFilmsMarkup(films);
         spinner.hidden();
-      }
-      appendFilmsMarkup(films);
-      spinner.hidden();
-    });
-  }, 1502);
-  loadMoreBtn.enable();
+      }).catch(error => {
+        console.log(error)
+      })
+    }, 1502);
+  }
+  loadMoreBtn.enable()
 }
 
 function appendFilmsMarkup(films) {
