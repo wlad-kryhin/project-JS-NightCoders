@@ -46,16 +46,16 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 function renderTrending() {
   filmsApiService.fetchTrendingFilms().then(appendFilmsMarkup);
 }
-spinner.active()
+spinner.active();
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
+
     renderTrending()
     renderTrendy()
     spinner.hidden()
     loadMoreBtn.show()
   },500)
 })
-
 // function onSearch(e) {
 //   e.preventDefault();
 //   filmsApiService.query = e.currentTarget.query.value;
@@ -72,23 +72,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function onSearch(e) {
   e.preventDefault();
-  spinner.active()
+  spinner.active();
   filmsApiService.query = e.currentTarget.query.value;
-  if (filmsApiService.query === '') {
-    Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Please, enter something!',
-  footer: '<a href="">Why do I have this issue?</a>'
-    });
+  if (filmsApiService.query === ''){
+    loadMoreBtn.disable();
+    return Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Please, enter something!',
+      footer: '<a href="">Why do I have this issue?</a>',
+    }):
     spinner.hidden()
   }
   
   filmsApiService.resetPage();
   clearFilmsContainer();
   onLoadMore();
-  loadMoreBtn.show()
- //   showModal(); // fn для модалки
+  loadMoreBtn.show();
 }
 
 // function onLoadMore() {
@@ -99,24 +99,24 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable();
   setTimeout(() => {
-    filmsApiService.fetchFilms().then((films) => {
-  if (films.length === 0) {
-  Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text: 'Something went wrong!',
-  footer: '<a href="">Why do I have this issue?</a>'
-  });
-    spinner.hidden()
-  }
-      appendFilmsMarkup(films)
-      spinner.hidden()
-      refs.loadMoreBtn.style.display ='flex'
-      loadMoreBtn.enable()
+    filmsApiService.fetchFilms().then(films => {
       if (films.length === 0) {
-        loadMoreBtn.hide()
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href="">Why do I have this issue?</a>',
+        });
       }
-})}, 1500);
+      appendFilmsMarkup(films);
+      spinner.hidden();
+      refs.loadMoreBtn.style.display = 'flex';
+      loadMoreBtn.enable();
+      if (films.length === 0) {
+        loadMoreBtn.hide();
+      }
+    });
+  }, 1501);
 }
 
 function appendFilmsMarkup(films) {
@@ -137,7 +137,7 @@ function myLibraryPageChange() {
   refsHeader.header.classList.add('header-background-myLibrary');
 }
 refsHeader.myLibraryBtn.addEventListener('click', e => {
-spinner.active()
+  spinner.active();
   e.preventDefault();
   refs.loadMoreBtn.style.display = 'none';
   myLibraryPageChange();
@@ -172,7 +172,7 @@ spinner.active()
     e.currentTarget.classList.add('active-btn');
     refsShow.showWatchedBtn.classList.remove('active-btn');
   });
-  spinner.hidden()
+  spinner.hidden();
 });
 
 const btnWatch = document.querySelector('[data-action="modalBtnAddWatched"]');
