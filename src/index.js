@@ -88,7 +88,7 @@ function onSearch(e) {
   }
   filmsApiService.resetPage();
   clearFilmsContainer();
-  loadMoreBtn.show();
+ loadMoreBtn.disable()
   onLoadMore();
 }
 
@@ -98,33 +98,36 @@ function onSearch(e) {
 // }
 
 function onLoadMore() {
-  loadMoreBtn.disable()
+  loadMoreBtn.show()
   spinner.active()
   if (filmsApiService.query === '' || filmsApiService.query.trim() === '') {
     loadMoreBtn.disable();
     renderTrending()
     spinner.hidden()
   }
-
-  setTimeout(() => {
-    filmsApiService.fetchFilms().then(films => {
-      if (films.length === 0) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Why do I have this issue?</a>',
+  else {
+    setTimeout(() => {
+      filmsApiService.fetchFilms().then(films => {
+        console.log(films);
+        if (films.length === 0) {
+          Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!',
+        footer: '<a href="">Why do I have this issue?</a>',
       });
-        renderTrending()
-        filmsApiService.query = ''
-         spinner.hidden();
-      }
-      appendFilmsMarkup(films);
-      spinner.hidden();
-  
-    });
-  }, 1502);
-   loadMoreBtn.enable()
+      renderTrending()
+      filmsApiService.query = ''
+      spinner.hidden()
+        }
+        appendFilmsMarkup(films);
+        spinner.hidden();
+      }).catch(error => {
+        console.log(error)
+      })
+    }, 1502);
+  }
+  loadMoreBtn.enable()
 }
 
 function appendFilmsMarkup(films) {
