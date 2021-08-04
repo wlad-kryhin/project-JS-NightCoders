@@ -19,7 +19,7 @@ export default class FilmsApiService {
   }
 
   fetchTrendingFilms() {
-    const url = `${BASE_URL}trending/movie/day?api_key=${API_KEY}`;
+    const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
 
     return fetch(url)
       .then(r => r.json())

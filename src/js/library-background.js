@@ -12,7 +12,7 @@ refers.myLibraryBtn.addEventListener('click', evt => {
   myLibraryBackgroundChange();
   if (
     localeStorageAPI.getValueWatched().length !== 0 ||
-    localeStorageAPI.getValueWatched().length !== 0
+    localeStorageAPI.getValueQueue().length !== 0
   ) {
     refers.backgroundLibrary.classList.remove('background-mylibrary');
   }

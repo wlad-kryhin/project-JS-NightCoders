@@ -39,7 +39,7 @@ export default function filmsTemp(data) {
       } else {
         genres = `${makeStringOfGenres(genre_ids)}`;
       }
-      const movieItem = `<li class="film-item">
+      const movieItem = `<li class="film-item" id="${id}">
                   <a href="" class="film-link">
                   <img src="${poster}" alt="${original_title}" class="film-img" id="${id}">
                   <p class="film-description">${original_title}

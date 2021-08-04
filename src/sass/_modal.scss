@@ -1,10 +1,8 @@
 /* MODAL */
-
 .is-hidden {
   transform: translateY(-10%);
   display: none;
 }
-
 .modal__backdrop {
   position: fixed;
   top: 0;
@@ -42,6 +40,7 @@
   pointer-events: initial;
   background-color: $color-modal-bg;
   border-radius: 12px;
+  animation: modalAnimate 500 cubic-bezier(0.4, 0, 0.2, 1);
   transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 99;
@@ -321,4 +320,21 @@
   width: 100%;
   height: 100%;
   fill: currentColor;
+}
+@keyframes modalAnimate {
+  0% {
+    transform: rotate(30deg);
+  }
+  25% {
+    transform: rotate(70deg);
+  }
+  50% {
+    transform: rotate(110deg);
+  }
+  75% {
+    transform: rotate(150deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }

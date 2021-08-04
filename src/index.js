@@ -19,12 +19,14 @@ import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 import Swal from 'sweetalert2';
+import renderTrendy from './js/slider';
 // showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {
   slider: document.querySelector('.slider-wrapper'),
   searchForm: document.querySelector('[data-index="search-form"]'),
   filmsContainer: document.querySelector('.film-list'),
+  filmCard: document.querySelector('.film-item'),
   loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
 const spinner = new Spinner();
@@ -47,11 +49,13 @@ function renderTrending() {
 spinner.active();
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
-    renderTrending();
-    spinner.hidden();
-  }, 500);
-});
 
+    renderTrending()
+    renderTrendy()
+    spinner.hidden()
+    loadMoreBtn.show()
+  },500)
+})
 // function onSearch(e) {
 //   e.preventDefault();
 //   filmsApiService.query = e.currentTarget.query.value;
@@ -70,20 +74,21 @@ function onSearch(e) {
   e.preventDefault();
   spinner.active();
   filmsApiService.query = e.currentTarget.query.value;
-  if (filmsApiService.query === '') {
+  if (filmsApiService.query === ''){
     loadMoreBtn.disable();
     return Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'Please, enter something!',
       footer: '<a href="">Why do I have this issue?</a>',
-    });
+    }):
+    spinner.hidden()
   }
+  
   filmsApiService.resetPage();
   clearFilmsContainer();
   onLoadMore();
   loadMoreBtn.show();
-  //   showModal(); // fn для модалки
 }
 
 // function onLoadMore() {
@@ -161,7 +166,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     refsShow.showQueuedBtn.classList.remove('active-btn');
   });
   refsShow.showQueuedBtn.addEventListener('click', e => {
-    e.preventDefault();
+    e.preventDefault(); 
     clearFilmsContainer();
     renderFilmsLibrary(localeStorageAPI.getValueQueue());
     e.currentTarget.classList.add('active-btn');

@@ -5,8 +5,10 @@ import LocaleStorageAPI from './localStorageAPI';
 import TrailerApp from './components/trailer-modal';
 import checkButtonsStatusAdd from './components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './components/buttonsQueueStatus';
+import Spinner from './spinner';
 const localeStorageAPI = new LocaleStorageAPI();
 const trailerApp = new TrailerApp();
+const spinner = new Spinner()
 
 const refs = {
   modalEl: document.querySelector('#modal__win'),
@@ -32,6 +34,7 @@ const refs = {
   trailerModal: document.querySelector('[data-action="js-trailer"]'),
   trailerModalContainer: document.querySelector('[data-action="js-trailer-container"]'),
   trailerModalTag: document.querySelector('.video-trailer'),
+  sliderBtn: document.querySelector('.btn-youtube-slider'),
 };
 
 refs.closeBtnEl.addEventListener('click', onCloseModal);
@@ -50,11 +53,26 @@ document.addEventListener('click', onClickInNotModal);
 
 function showModal(event) {
   event.preventDefault();
-  /* Миша */
-  renderModal(event.target.id);
-  // renderMovieCard(event.target.id);
-  setTimeout(() => onOpenModal(), 300);
-}
+  spinner.active()
+  if (event.target.nodeName === 'IMG') {
+    renderModal(event.target.id);
+    setTimeout(() => {
+    onOpenModal()
+    spinner.hidden()
+    }, 300);
+    
+  }
+  spinner.hidden()
+  }
+  // /* Миша */
+  // renderModal(event.target.id);
+  
+  // // renderMovieCard(event.target.id);
+  // setTimeout(() => {
+  //   onOpenModal()
+  //   spinner.hidden()
+  // }, 300);
+
 
 /* ----------------open/close---------------- */
 
@@ -118,12 +136,13 @@ async function renderModal(id) {
   refs.modalBtnAddWatched.id = movie.id;
   refs.movieBtnQueue.id = movie.id;
   refs.btnYoutube.id = movie.id;
-
-  refs.btnYoutube.addEventListener('click', openTrailerBtn);
+  
+  refs.sliderBtn.addEventListener('click', openTrailerBtn)
 
   checkButtonsStatusAdd();
   checkButtonsStatusQueue();
 }
+refs.btnYoutube.addEventListener('click', openTrailerBtn);
 
 function showTrailer(id) {
   const url = `
