@@ -9,17 +9,15 @@
   refs.closeModalFooter.addEventListener('click', toggleModal);
 
   function toggleModal(event) {
-    refs.footerModal.classList.toggle('is-hidden');
-
     event.preventDefault();
+    refs.footerModal.classList.toggle('is-hidden');
+    window.addEventListener('keydown', closeFooterModalEscape);
   }
-
-  window.addEventListener('keydown', closeFooterModalEscape);
 
   function closeFooterModalEscape(event) {
     if (event.code === 'Escape') {
       toggleModal(event);
-      window.removeEventListener('keydown', closeModalFooter);
+      window.removeEventListener('keydown', closeFooterModalEscape);
     }
   }
 })();

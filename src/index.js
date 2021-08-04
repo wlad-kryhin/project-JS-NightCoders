@@ -6,6 +6,7 @@ import './js/clock';
 import './js/btn-scroll';
 import './js/toggle';
 import './js/modal.js';
+import LibraryBackgroundCheck from './js/components/bgLogic';
 import './js/components/trailer-modal';
 import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
@@ -36,6 +37,7 @@ const loadMoreBtn = new LoadMoreBtn({
   hidden: true,
 });
 const filmsApiService = new FilmsApiService();
+const libraryBackgroundCheck = new LibraryBackgroundCheck();
 
 // const BASE_URL = 'https://api.themoviedb.org/3';
 // const API_KEY = '84867915c8b3aadc91d5efa8c22e1ab6';
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function onSearch(e) {
   e.preventDefault();
   spinner.active();
-  loadMoreBtn.hide()
+  loadMoreBtn.hide();
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '' || filmsApiService.query === ' ') {
     Swal.fire({
@@ -82,8 +84,8 @@ function onSearch(e) {
       text: 'Please, enter something!',
       footer: '<a href="">Why do I have this issue?</a>',
     });
-    renderTrending()
-    spinner.hidden()
+    renderTrending();
+    spinner.hidden();
     loadMoreBtn.disable();
   }
   filmsApiService.resetPage();
@@ -98,12 +100,13 @@ function onSearch(e) {
 // }
 
 function onLoadMore() {
-  loadMoreBtn.show()
-  spinner.active()
+
+  loadMoreBtn.disable();
+  spinner.active();
   if (filmsApiService.query === '' || filmsApiService.query.trim() === '') {
     loadMoreBtn.disable();
-    renderTrending()
-    spinner.hidden()
+    renderTrending();
+    spinner.hidden();
   }
   else {
     setTimeout(() => {
@@ -156,6 +159,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
   currentThemeWebSite();
   refs.searchForm.classList.add('direction-row');
   refsHeader.myLibraryBtn.classList.add('current');
+  libraryBackgroundCheck.checkWateched();
   refsHeader.homeBtn.classList.remove('current');
   refs.searchForm.innerHTML = `<button class="library-button active-btn" data-action="show-watched">
                     WATCHED
@@ -183,6 +187,7 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
       const btnQueue = document.querySelector('[data-action="movieBtnQueue"]');
       btnQueue.removeEventListener('click', reRenderQueue);
     }
+    libraryBackgroundCheck.checkWateched();
   });
 
   refsShow.showQueuedBtn.addEventListener('click', e => {
@@ -196,13 +201,16 @@ refsHeader.myLibraryBtn.addEventListener('click', e => {
     if (refsShow.showQueuedBtn && refsShow.showQueuedBtn.classList.contains('active-btn')) {
       btnQueue.addEventListener('click', reRenderQueue);
     }
+    libraryBackgroundCheck.checkQueue();
   });
   function reRenderWatched() {
     clearFilmsContainer();
+    libraryBackgroundCheck.checkWateched();
     renderFilmsLibrary(localeStorageAPI.getValueWatched());
   }
   function reRenderQueue() {
     clearFilmsContainer();
+    libraryBackgroundCheck.checkQueue();
     renderFilmsLibrary(localeStorageAPI.getValueQueue());
   }
 
