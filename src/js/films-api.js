@@ -19,11 +19,13 @@ export default class FilmsApiService {
   }
 
   fetchTrendingFilms() {
-    const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
-
+    // https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
+    // const url = `${BASE_URL}trending/movie/week?api_key=${API_KEY}`;
+ const url = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
     return fetch(url)
       .then(r => r.json())
       .then(({ results }) => {
+        this.incrementPage()
         return results;
       });
   }
