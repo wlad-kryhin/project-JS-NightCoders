@@ -75,7 +75,7 @@ function onSearch(e) {
   spinner.active();
   loadMoreBtn.hide()
   filmsApiService.query = e.currentTarget.query.value;
-  if (filmsApiService.query === '') {
+  if (filmsApiService.query === '' || filmsApiService.query === ' ') {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -100,7 +100,7 @@ function onSearch(e) {
 function onLoadMore() {
   loadMoreBtn.disable()
   spinner.active()
-  if (filmsApiService.query === '') {
+  if (filmsApiService.query === '' || filmsApiService.query.trim() === '') {
     loadMoreBtn.disable();
     renderTrending()
     spinner.hidden()
