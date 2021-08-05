@@ -14,6 +14,8 @@ function scrollTopOnClick(event) {
 
 function hideElOnScroll(el) {
   return function hideOnScroll(event) {
+    console.log(pageYOffset);
+    console.log(document.documentElement.clientHeight);
     if (pageYOffset < document.documentElement.clientHeight) {
       el.classList.add('visually-hidden');
     } else {
