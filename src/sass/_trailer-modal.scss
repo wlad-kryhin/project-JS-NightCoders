@@ -7,13 +7,14 @@
 }
 
 .trailer-positioning {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100px;
   min-width: 300px;
   width: 80%;
   max-width: 768px;
   display: flex;
   justify-content: center;
   // padding: 0;
+  @media screen and (min-width: 1024px) {
+    top: 150px;
+  }
 }

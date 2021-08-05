@@ -100,7 +100,6 @@ function onSearch(e) {
 // }
 
 function onLoadMore() {
-loadMoreBtn.show()
   loadMoreBtn.disable();
   spinner.active();
   if (filmsApiService.query === '' || filmsApiService.query.trim() === '') {
