@@ -111,7 +111,6 @@ loadMoreBtn.show()
   else {
     setTimeout(() => {
       filmsApiService.fetchFilms().then(films => {
-        console.log(films);
         if (films.length === 0) {
           Swal.fire({
         icon: 'error',
