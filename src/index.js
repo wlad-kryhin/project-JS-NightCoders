@@ -10,13 +10,12 @@ import LibraryBackgroundCheck from './js/components/bgLogic';
 import './js/components/trailer-modal';
 import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
-import showModal from './js/modal.js'; // импорт fn открытие/закрытие модалки
+import showModal from './js/modal.js'; 
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
 import LoadMoreBtn from './js/components/load-more-btn';
 import './js/library-background';
-import getMovies from './js/myLibraryCards';
 import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 import Swal from 'sweetalert2';

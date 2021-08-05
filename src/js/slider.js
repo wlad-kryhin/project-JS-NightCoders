@@ -1,8 +1,6 @@
 import Glide from '@glidejs/glide';
 import filmsCardSliderTpl from '../templates/card-films-slider.hbs';
 const sliderContainer = document.querySelector('.js-slider-container');
-// const sliderWrapper = document.querySelector('.slider-wrapper');
-
 
 const glide = new Glide('.glide', {
   type: 'slider',
