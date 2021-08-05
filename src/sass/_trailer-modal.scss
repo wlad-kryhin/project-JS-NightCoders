@@ -7,6 +7,9 @@
 }
 
 .trailer-positioning {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   min-width: 300px;
   width: 80%;
   max-width: 768px;
