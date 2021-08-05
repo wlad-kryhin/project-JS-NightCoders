@@ -54,40 +54,47 @@
         </svg>
       </button>
     </span>
-    <!-- MENU FILTER -->
-    <div class="menu-filter">
+    <!-- MENU FILTER -->    
+  </form>
+  
+    <div class="menu-filter" id="js-menu-filter">
       <button class="menu-filter__button" type="button" data-action="open-menu-filter">Filter search</button>        
       <ul class="filter-list is-hidden">
-        <button type="button" class="filter-list__button-close" data-action="close-filter-list"></button>
-        <li class="filter-item">          
-          <label class="filter-item__label" for="filter-input__new-films">
-            <input id="filter-input__new-films" class="input" type="checkbox" checked/>New films
-          </label>
-        </li>
-        <li class="filter-item">          
-          <label class="filter-item__label" for="filter-input__top-films">
-            <input id="filter-input__top-films" class="input" type="checkbox" checked/>Top films            
-          </label>
-        </li>
-        <li class="filter-item item-genres">          
-          <label class="filter-item__label" for="filter-input__films-genres">
-            <input id="filter-input__films-genres" class="input" type="checkbox" checked/>Films genres</label>
-          <ul class="filter-item__list list-genres is-hidden">
-            <button type="button" class="filter-item__list-button-close button-genres" data-action="close-button-genres"></button>            
-            <!-- genres list -->
-          </ul>
-        </li>
-        <li class="filter-item item-date">
-          <label class="filter-item__label" for="filter-input__release-date">
-            <input id="filter-input__release-date" class="input" type="checkbox" checked/>Release date</label>
-          <ul class="filter-item__list list-date is-hidden">
-            <button type="button" class="filter-item__list-button-close button-dete" data-action="date-button-close"></button>
-            <!-- reease date list -->           
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </form>
+      <button class="menu-filter__submit-button" type="button" id="filter-button">
+        <svg class="menu-filter__search-icon">
+        <use href="./images/sprite.svg#icon-search"></use>
+      </svg>
+      </button>
+      <button type="button" class="filter-list__button-close" data-action="close-filter-list"></button>
+      <li class="filter-item">          
+        <label class="filter-item__label" for="filter-input__new-films">
+          <input id="filter-input__new-films" class="input input-filter" type="checkbox" value="New films"/>New films
+        </label>
+      </li>
+      <li class="filter-item">          
+        <label class="filter-item__label" for="filter-input__top-films">
+          <input id="filter-input__top-films" class="input input-filter" type="checkbox" value="Top films"/>Top films            
+        </label>
+      </li>
+      <li class="filter-item item-genres">          
+        <label class="filter-item__label" for="filter-input__films-genres">
+          <input id="filter-input__films-genres" class="input input-filter" type="checkbox" value="Films genres"/>Films genres</label>
+        <ul class="filter-item__list list-genres is-hidden">
+          <button type="button" class="filter-item__list-button-close button-genres" data-action="close-button-genres"></button>            
+          <!-- genres list -->
+        </ul>
+      </li>
+      <li class="filter-item item-date">
+        <label class="filter-item__label" for="filter-input__release-date">
+          <input id="filter-input__release-date" class="input input-filter" type="checkbox" value="Release date"/>Release date</label>
+        <ul class="filter-item__list list-date is-hidden">
+          <button type="button" class="filter-item__list-button-close button-dete" data-action="date-button-close"></button>
+          <!-- reease date list -->           
+        </ul>
+      </li>
+    </ul>
+  </div>
+    
 </div>
 </header>
 
