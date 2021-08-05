@@ -159,6 +159,7 @@ https://api.themoviedb.org/3/movie/${id}/videos?api_key=84867915c8b3aadc91d5efa8
 function openTrailerBtn(e) {
   e.preventDefault();
   onCloseModal();
+    refs.bodyEl.classList.add('hidden');
   showTrailer(e.currentTarget.id);
 }
 
