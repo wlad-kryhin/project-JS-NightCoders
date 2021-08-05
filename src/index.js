@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function onSearch(e) {
   e.preventDefault();
   spinner.active();
-  loadMoreBtn.hide();
   filmsApiService.query = e.currentTarget.query.value;
   if (filmsApiService.query === '' || filmsApiService.query === ' ') {
     Swal.fire({
