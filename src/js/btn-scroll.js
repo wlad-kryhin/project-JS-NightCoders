@@ -6,16 +6,14 @@ window.addEventListener('scroll', throttle(hideElOnScroll(scrollBtn), 250));
 scrollBtn.addEventListener('click', scrollTopOnClick);
 
 function scrollTopOnClick(event) {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
 }
 
 function hideElOnScroll(el) {
   return function hideOnScroll(event) {
-    console.log(pageYOffset);
-    console.log(document.documentElement.clientHeight);
     if (pageYOffset < document.documentElement.clientHeight) {
       el.classList.add('visually-hidden');
     } else {

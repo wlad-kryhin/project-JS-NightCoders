@@ -10,7 +10,7 @@ import LibraryBackgroundCheck from './js/components/bgLogic';
 import './js/components/trailer-modal';
 import checkButtonsStatusAdd from './js/components/buttonsWatchedStatus';
 import checkButtonsStatusQueue from './js/components/buttonsQueueStatus';
-import showModal from './js/modal.js'; 
+import showModal from './js/modal.js';
 import './js/modal-footer';
 import FilmsApiService from './js//films-api.js';
 import filmsTemp from './js/filmsRender';
@@ -20,6 +20,7 @@ import renderFilmsLibrary from './js/myLibraryCards';
 import './js/slider';
 import Swal from 'sweetalert2';
 import renderTrendy from './js/slider';
+import { makeCardsAnimated } from './js/responsive-card';
 // showMenuFilter();
 import { currentThemeWebSite } from './js/toggle';
 const refs = {
@@ -104,33 +105,36 @@ function onLoadMore() {
     loadMoreBtn.disable();
     renderTrending();
     spinner.hidden();
-  }
-  else {
+  } else {
     setTimeout(() => {
-      filmsApiService.fetchFilms().then(films => {
-        if (films.length === 0) {
-          Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        footer: '<a href="">Why do I have this issue?</a>',
-      });
-      renderTrending()
-      filmsApiService.query = ''
-      spinner.hidden()
-        }
-        appendFilmsMarkup(films);
-        spinner.hidden();
-      }).catch(error => {
-        console.log(error)
-      })
+      filmsApiService
+        .fetchFilms()
+        .then(films => {
+          if (films.length === 0) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+              footer: '<a href="">Why do I have this issue?</a>',
+            });
+            renderTrending();
+            filmsApiService.query = '';
+            spinner.hidden();
+          }
+          appendFilmsMarkup(films);
+          spinner.hidden();
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }, 1502);
   }
-  loadMoreBtn.enable()
+  loadMoreBtn.enable();
 }
 
 function appendFilmsMarkup(films) {
   refs.filmsContainer.insertAdjacentHTML('beforeend', filmsTemp(films));
+  makeCardsAnimated();
 }
 
 function clearFilmsContainer() {

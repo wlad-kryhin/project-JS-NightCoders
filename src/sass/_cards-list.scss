@@ -20,6 +20,7 @@
   &:focus {
     box-shadow: 0px 8px 70px #ff6b08;
   }
+  will-change: transform;
 
   &:hover,
   &:focus {

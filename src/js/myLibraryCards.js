@@ -1,5 +1,6 @@
 import LocaleStorageAPI from './localStorageAPI';
 import cardsTemplate from '../templates/cardsTemplate.hbs';
+import { makeCardsAnimated } from './responsive-card';
 const container = document.querySelector('.film-list');
 const localeStorageAPI = new LocaleStorageAPI();
 async function getMovies(idList) {
@@ -21,7 +22,9 @@ async function getMovies(idList) {
 export default function renderFilmsLibrary(whatToRender) {
   const watchedFilms = whatToRender;
   if (watchedFilms.length) {
-    getMovies(watchedFilms).then(res => res.forEach(movie => libraryCardsMarkup(movie)));
+    getMovies(watchedFilms)
+      .then(res => res.forEach(movie => libraryCardsMarkup(movie)))
+      .then(e => makeCardsAnimated());
   }
 }
 
